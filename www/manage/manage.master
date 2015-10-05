@@ -1,0 +1,944 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="manage.master.cs" Inherits="manage_manage" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Src="~/manage/school-districts/reports/controls/GoogleChartsHeader.ascx" TagPrefix="epg" TagName="GoogleChartsHeader" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	<title runat="server" id="manage_page_title"></title>
+
+    <telerik:RadScriptBlock ID="radScriptBlock" runat="server">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/bootstrap.min.css") %>">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/bootstrap-responsive.min.css") %>">
+    
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery-ui.css") %>">
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css") %>">
+	<!-- PageGuide -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/pageguide/pageguide.css") %>">
+	<!-- Fullcalendar -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/fullcalendar/fullcalendar.css") %>">
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/fullcalendar/fullcalendar.print.css") %>" media="print">
+	<!-- chosen -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/chosen/chosen.css") %>">
+	<!-- select2 -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/select2/select2.css") %>">
+	<!-- icheck -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/icheck/all.css") %>">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/style.css") %>">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/themes.css") %>">
+    <!-- dataTables -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/datatable/TableTools.css") %>">
+    <!-- Quartz CSS -->
+    <link rel="stylesheet" href="<%= ResolveUrl ("~/social/css/quartz.css") %>">
+	<!-- Daterangepicker -->
+    <link rel="stylesheet" type="text/css" media="all" href="/manage/css/plugins/daterangepicker/daterangepicker.css" />
+    <!-- Added for Azure Video -->
+    <link rel="stylesheet" href="<%# ResolveUrl ("~/social/css/playerframework.min.css") %>">
+
+	<!-- jQuery -->
+	<script src="<%= ResolveUrl ("~/manage/js/jquery.min.js") %>"></script>
+	
+	
+	<!-- Nice Scroll -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/nicescroll/jquery.nicescroll.min.js") %>"></script>
+	<!-- jQuery UI -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.core.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.widget.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.mouse.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.draggable.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.resizable.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.sortable.min.js") %>"></script>
+	<!-- Touch enable for jquery UI -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/touch-punch/jquery.touch-punch.min.js") %>"></script>
+	<!-- slimScroll -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/slimscroll/jquery.slimscroll.min.js") %>"></script>
+	<!-- Bootstrap -->
+	<script src="<%= ResolveUrl ("~/manage/js/bootstrap.min.js") %>"></script>
+	<!-- vmap -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.world.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.sampledata.js") %>"></script>
+	<!-- Bootbox -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/bootbox/jquery.bootbox.js") %>"></script>
+	<!-- Flot -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.bar.order.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.pie.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.resize.min.js") %>"></script>
+	<!-- imagesLoaded -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/imagesLoaded/jquery.imagesloaded.min.js") %>"></script>
+	<!-- PageGuide -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/pageguide/jquery.pageguide.js") %>"></script>
+	<!-- FullCalendar -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/fullcalendar/fullcalendar.min.js") %>"></script>
+	<!-- Chosen -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/chosen/chosen.jquery.min.js") %>"></script>
+	<!-- select2 -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/select2/select2.min.js") %>"></script>
+	<!-- icheck -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/icheck/jquery.icheck.min.js") %>"></script>
+	<!-- Daterangepicker -->
+    <script type="text/javascript" src="/manage/js/plugins/momentjs/moment.js"></script>
+    <script type="text/javascript" src="/manage/js/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <!-- JSChart -->
+    <script type="text/javascript" src="/social/js/canvasjs.min.js"></script>
+
+	<!-- Theme framework -->
+	<script src="<%= ResolveUrl ("~/manage/js/eakroko.min.js") %>"></script>
+	<!-- Theme scripts -->
+	<script src="<%= ResolveUrl ("~/manage/js/application.min.js") %>"></script>
+	<!-- Just for demonstration -->
+	<script src="<%= ResolveUrl ("~/manage/js/demonstration.min.js") %>"></script>
+	</telerik:RadScriptBlock>
+
+    <!-- Azure Video Playback -->
+    <script src="<%# ResolveUrl ("/social/js/playerframework.min.js") %>"></script>
+
+	<!-- dataTables -->
+	<script src="/manage/js/plugins/datatable/jquery.dataTables.min.js"></script>
+	<script src="/manage/js/plugins/datatable/TableTools.min.js"></script>
+	<script src="/manage/js/plugins/datatable/ColReorderWithResize.js"></script>
+	<script src="/manage/js/plugins/datatable/ColVis.min.js"></script>
+	<script src="/manage/js/plugins/datatable/jquery.dataTables.columnFilter.js"></script>
+	<script src="/manage/js/plugins/datatable/jquery.dataTables.grouping.js"></script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+    <!-- QUARTZ JAVASCRIPT -->
+    <script src="<%# ResolveUrl ("~/manage/js/quartz.js") %>?<%# DateTime.Now.Month %><%# DateTime.Now.Day %><%# DateTime.Now.Year %>"></script>
+
+    <epg:GoogleChartsHeader runat="server" ID="GoogleChartsHeader" />
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class='theme-grey'>
+    <form runat="server">
+    <telerik:RadScriptManager runat="server" ID="RadScriptManager1">
+        <Services>
+            <asp:ServiceReference path="~/services/UserInfo.asmx" />
+            <asp:ServiceReference path="~/services/Feed.asmx" />
+            <asp:ServiceReference path="~/services/MessageCenter.asmx" />
+            <asp:ServiceReference path="~/services/NotificationCenter.asmx" />
+            <asp:ServiceReference path="~/services/MemberGroups.asmx" />
+            <asp:ServiceReference path="~/services/Spaces.asmx" />
+            <asp:ServiceReference path="~/services/Campaign.asmx" />
+            <asp:ServiceReference path="~/services/FrontPageTiles.asmx" />
+            <asp:ServiceReference path="~/services/Medication.asmx" />
+        </Services>
+    </telerik:RadScriptManager>
+
+    <div id="manageElementModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="#">
+	    <div class="modal-header">
+		    <button type="button" id="#manage_element_close_top" class="close" onclick="closeElementModal(); return false;" aria-hidden="true">×</button>
+		    <h3 id="#mTitle">Media Viewer</h3>
+	    </div>
+	    <div class="modal-body" id="#manageElementBody">
+	    </div>
+	    <div class="modal-footer">
+		    <button type="button" id="#manage_element_close_bottom" class="btn" onclick="closeElementModal(); return false;" aria-hidden="true">Close</button>
+	    </div>
+    </div>
+
+	<div id="navigation">
+		<div class="container-fluid">
+			<a href="/utilities/manage-user-access.aspx" id="brand"><asp:Literal ID="litSiteName" runat="server"></asp:Literal></a>
+			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+			<ul class='main-nav' style="z-index:1000!important;">
+
+                <asp:PlaceHolder ID="plhSite" runat="server" Visible="false">
+                    <li>
+					    <a href="/manage/site/default.aspx">
+						    <span>Dashboard</span>
+					    </a>
+				    </li>                  
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Site</span>
+						    <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+                            <!--
+                            <li>
+							    <a href="/manage/site/social/explore.aspx">Explore</a>
+						    </li>
+                           <li>
+							    <a href="/manage/site/social/feed.aspx">Feed</a>
+						    </li>
+                           <li>
+							    <a href="/manage/site/content/frontpage-tiles-edit.aspx">Frontpage Tiles</a>
+						    </li>
+                            -->
+                           <li>
+							    <a href="/manage/site/content/library.aspx">File Manager</a>
+						    </li>                           
+                            <!--
+                            <li class='dropdown-submenu'>
+							    <a href="#">Calendar</a>
+							    <ul class="dropdown-menu">
+						            <li>
+							            <a target="_blank" href="<%= final_manage_url %>"><i class="icon-external-link"></i> Contests</a>
+						            </li>
+						            <li>
+							            <a target="_blank" href="<%= final_manage_url %>"><i class="icon-external-link"></i> Events</a>
+						            </li>
+                                </ul>
+                            </li>
+                            -->
+						    <li class='dropdown-submenu'>
+							    <a href="#">Content</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/site/content/articles-list.aspx"> Articles</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/content/blogs-list.aspx?type=blog"> Blogs</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/calendar/events-list.aspx"> Events</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/content/forums-list.aspx"> Forums</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/content/links-list.aspx"> Links</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/content/polls-list.aspx"> Polls</a>
+								    </li>
+                                    <!--
+								    <li>
+									    <a href><i class="icon-external-link"></i> Slideshows</a>
+								    </li>
+                                    -->
+								    <li>
+									    <a href="/manage/site/content/tips-list.aspx"> Tips</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/content/comments-list.aspx"> Thoughts</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/content/videos-list.aspx"> Videos</a>
+								    </li>
+							    </ul>
+						    </li>
+                            <li class='dropdown-submenu'>
+							    <a href="#">Calendar</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/site/content/redirects-list.aspx"> Events</a>
+								    </li>
+							    </ul>
+						    </li>
+						    <li class='dropdown-submenu'>
+							    <a href="#">Pages</a>
+							    <ul class="dropdown-menu">
+                                    <li>
+                                         <a href="/manage/site/content/page-elements-list.aspx">Page Zones</a>
+						            </li>
+                                    <!--
+						            <li>
+							            <a href="/manage/site/pages/page-list.aspx">Complete Pages</a>
+						            </li>
+                                    -->
+                                </ul>
+                            </li>
+						    <li class='dropdown-submenu'>
+							    <a href="#">Learning</a>
+							    <ul class="dropdown-menu">
+                                    <li>
+                                         <a href="/manage/site/learning/campaigns-list.aspx">Campaigns</a>
+						            </li>
+                                    <li>
+                                         <a href="/manage/site/learning/trainings-list.aspx">Trainings</a>
+						            </li>
+                                    <li>
+                                         <a href="/manage/site/learning/assessments-list.aspx">Assessments</a>
+						            </li>
+                                    <li>
+                                         <a href="/manage/site/learning/question-editor.aspx?mode=all">Questions</a>
+						            </li>
+                                    <li>
+                                         <a href="/manage/site/learning/question-category-list.aspx">Question Categories</a>
+						            </li>
+                                </ul>
+                            </li>
+                            <li class='dropdown-submenu'>
+							    <a href="#">MetaData</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/site/metadata/authors-list.aspx"> Authors</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/metadata/keywords-list.aspx"> Keywords</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/metadata/themes-list.aspx"> Themes</a>
+								    </li>
+								    <li>
+									    <a href="/manage/site/metadata/topics-list.aspx"> Topics</a>
+								    </li>
+							    </ul>
+						    </li>
+                            <li class='dropdown-submenu'>
+							    <a href="#">Server Tools</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/site/content/redirects-list.aspx"> Redirects</a>
+								    </li>
+							    </ul>
+						    </li>
+                            <li class='dropdown-submenu'>
+							    <a href="#">Manage</a>
+							    <ul class="dropdown-menu">
+						            <li>
+							            <a href="/manage/site/tasks-list.aspx">Manage Tasks</a>
+						            </li>
+						            <li>
+							            <a href="/manage/members/warnings-list.aspx">Manage Warnings</a>
+						            </li>
+                                    <!--
+						            <li>
+							            <a href="layouts-sidebar-hidden.html">Site Reports</a>
+						            </li>
+                                    -->
+                                </ul>
+                            </li>
+					    </ul>
+				    </li>
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Members</span>
+						    <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+                            <li>
+							    <a href="/manage/members/member-list.aspx">Members</a>
+						    </li>
+                            <asp:PlaceHolder ID="plhGroupInvitations" runat="server" Visible="false">
+						    <li class='dropdown-submenu'>
+							    <a href="#">Invitations</a>
+							    <ul class="dropdown-menu">
+                                    <li>
+							            <a target="_blank" href="<%= final_manage_url %>"><i class="icon-external-link"></i> For Moderated Groups</a>
+						            </li>
+                                   <li>
+							            <a target="_blank" href="<%= final_manage_url %>"><i class="icon-external-link"></i> Invitation Template</a>
+						            </li>
+                                </ul>
+                            </li>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="plhFamilyInvitations" runat="server" Visible="false">
+						    <li class='dropdown-submenu'>
+							    <a href="#">Invitations</a>
+							    <ul class="dropdown-menu">
+                                    <li>
+							            <a href="/manage/members/invitations-list-families.aspx"> For Families</a>
+						            </li>
+                                   <li>
+							            <a href="/manage/members/invitation-template-edit.aspx"> Invitation Template</a>
+						            </li>
+                                </ul>
+                            </li>
+                            </asp:PlaceHolder>
+                            <li class='dropdown-submenu'>
+							    <a href="#">Groups</a>
+							    <ul class="dropdown-menu">
+                                    <li>
+							            <a href="/manage/members/spaces-list.aspx">Groups</a>
+						            </li>
+                                    <asp:PlaceHolder ID="plhGroupTypeSchool" runat="server">
+                                        <li>
+							                <a href="/manage/members/group-requests-list.aspx"> Group Requests</a>
+						                </li>
+                                    </asp:PlaceHolder>
+                                    <asp:PlaceHolder ID="plhGroupTypeHealth" runat="server">
+                                        <li>
+							                <a href="/manage/members/health-providers-group-requests-list.aspx"> Group Requests</a>
+						                </li>
+                                    </asp:PlaceHolder>
+                                    <li>
+							            <a href="/manage/members/group-types-list.aspx"> Group Types</a>
+						            </li>
+                                </ul>
+                            </li>
+                            <asp:PlaceHolder ID="plhGroupsSchools" runat="server">
+                            <li>
+							    <a href="/manage/site/schools/schools-list.aspx"> Schools</a>
+						    </li>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="plhGroupsHealthProviders" runat="server">
+                            <li>
+							    <a href="/manage/health/health-providers-list.aspx"> Health Providers</a>
+						    </li>
+                            </asp:PlaceHolder>
+                            <li class='dropdown-submenu'>
+							    <a href="#">Member Learning</a>
+							    <ul class="dropdown-menu">
+                                    <li>
+                                         <a href="/manage/members/learning/user-training-list.aspx">User Trainings</a>
+						            </li>
+                                    <li>
+                                         <a href="/manage/members/learning/user-assessment-list.aspx">User Assessments</a>
+						            </li>
+                                    <li>
+                                         <a href="/manage/members/learning/user-question-log.aspx">Queston Log</a>
+						            </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Communications</span>
+						    <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+					        <li class='dropdown-submenu'>
+							    <a href="#">Contacts</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/communications/contacts/contacts-list.aspx"> Contacts</a>
+								    </li>
+								    <li>
+									    <a href="/manage/communications/contacts/process-contacts-upload.aspx"> Upload New Contacts</a>
+								    </li>
+                                </ul>
+                            </li>
+					        <li class='dropdown-submenu'>
+							    <a href="#">Emails</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/communications/email/emails-list.aspx"> Emails</a>
+								    </li>
+								    <li>
+									    <a href="/manage/communications/email/send-event-list.aspx"> Send Events</a>
+								    </li>
+								    <li>
+									    <a href="/manage/communications/email/email-log.aspx"> Send Log</a>
+								    </li>
+                                </ul>
+                            </li>
+                            <li class='dropdown-submenu'>
+							    <a href="#">Text Messages</a>
+							    <ul class="dropdown-menu">
+								    <li>
+									    <a href="/manage/communications/messaging/sms-messages-list.aspx"> Text Messages</a>
+								    </li>
+								    <li>
+									    <a href="/manage/communications/messaging/sms-send-event-list.aspx"> Send Events</a>
+								    </li>
+								    <li>
+									    <a href="/manage/communications/messaging/sms-message-log.aspx"> Text Message Log</a>
+								    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <asp:PlaceHolder ID="plhHealthMenu" runat="server" Visible="false">
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Health</span>
+						    <span class="caret"></span>
+					    </a>
+                        
+					    <ul class="dropdown-menu">
+                            <asp:PlaceHolder ID="plhCondoms" Visible="true" runat="server">
+                            <li>
+							    <a target="_blank" href="<%= final_manage_url %>&ReturnUrl=/qHtl/condom-orders-list.aspx"><i class="icon-external-link"></i> Condom Orders</a>
+						    </li>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="plhHealthCareProviders" Visible="true" runat="server">
+                            <li>
+							    <a target="_blank" href="<%= final_manage_url %>&ReturnUrl=/qHtl/health-providers-list.aspx"><i class="icon-external-link"></i> Health Providers</a>
+						    </li>
+                            </asp:PlaceHolder>
+                        </ul>
+                    </li>
+                    </asp:PlaceHolder>
+                    <asp:PlaceHolder ID="plhExplorers" runat="server" Visible="false">
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Explorers</span>
+						    <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+                            <li>
+							    <a href="/manage/explorers/medication-groups.aspx"> Medication Explorer</a>
+						    </li>
+                        </ul>
+                    </li>
+                    </asp:PlaceHolder>
+                    <asp:PlaceHolder ID="plhCampaignsPrograms" runat="server">
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Campaigns & Programs</span>
+						    <span class="caret"></span>
+					    </a>
+
+					    <ul class="dropdown-menu">
+                            <li>
+                                <a href="/manage/site/learning/campaigns-list.aspx">Campaigns</a>
+						    </li>
+                        </ul>
+                    </li>
+                    </asp:PlaceHolder>
+
+                </asp:PlaceHolder>
+
+                <asp:PlaceHolder ID="plhInsurer" runat="server" Visible="false">
+                </asp:PlaceHolder>
+
+                <asp:PlaceHolder ID="plhSchoolDistrict" runat="server">
+                    <li>
+					    <a href="/manage/school-districts/default.aspx">
+						    <span>Overview</span>
+					    </a>
+				    </li>
+                    <!-- 
+                    <li>
+					    <a href="/manage/school-districts/reports/school-absentee-report.aspx?reportSearchID=2">
+						    <span>Dashboard</span>
+					    </a>
+				    </li>
+                    -->
+                    <li>
+					    <a href="/manage/school-districts/school-health-warnings.aspx">
+						    <span>Health Warnings</span>
+					    </a>
+				    </li>
+                    <!--
+                    <li>
+					    <a href="/manage/school-districts/map.aspx">
+						    <span>Map</span>
+					    </a>
+				    </li>
+                    -->
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Absentee Data</span>
+						    <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+                            <li>
+							    <a href="/manage/school-districts/daily-classroom-absentee-data.aspx">Daily Absentee Data at Classroom Level</a>
+						    </li>
+                            <li>
+							    <a href="/manage/school-districts/daily-school-absentee-data.aspx">Daily Absentee Data at School Level</a>
+						    </li>
+                            <li>
+							    <a href="/manage/school-districts/daily-district-absentee-data.aspx">Daily District Absentee Summary Data</a>
+						    </li>
+					    </ul>
+				    </li>
+                    <!--
+                    <li>
+					    <a href="/manage/school-districts/reports/school-district-reports.aspx">
+						    <span>Reports</span>
+					    </a>
+				    </li>
+                    -->
+                    <li>
+					    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Tools</span>
+						    <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu">
+							<li>
+								<a href="/manage/school-districts/absentee-data-process/process-absentee-upload.aspx">Upload Absentee Data</a>
+							</li>
+                            <li>
+							    <a href="/manage/school-districts/admin/analyze-data.aspx">Analyze Absentee Data</a>
+						    </li>
+                            <li>
+							    <a href="/manage/site/schools/schools-list.aspx">Manage Schools</a>
+						    </li>
+					    </ul>
+				    </li>
+                </asp:PlaceHolder>
+
+                <asp:PlaceHolder ID="plhSpace" runat="server" Visible="false">
+                    <li>
+					    <a href="/manage/spaces/default.aspx">
+						    <span>Campaigns</span>
+					    </a>
+				    </li>
+                    <!--
+    	            <li>
+					    <a href="/manage/site/h.aspx" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Program</span>
+                            <span class="caret"></span>
+					    </a>
+                        <ul class="dropdown-menu">
+							<li>
+								<a href="/manage/site/content/articles-list.aspx"> Articles</a>
+							</li>
+                            <!--
+						    <li>
+							    <a href="/manage/spaces/program/page-list.aspx">Pages</a>
+						    </li>
+						    <li>
+							    <a href="#">Basic Info</a>
+						    </li>
+						    <li>
+							    <a href="#">Settings</a>
+						    </li>
+                            
+					    </ul>
+				    </li>
+                    -->
+                    <!--
+    	            <li runat="server" id="liPeople">
+					    <a href="/manage/site/h.aspx" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>People</span>
+                            <span class="caret"></span>
+					    </a>
+                        <ul class="dropdown-menu">
+						    <li>
+							    <a href="/manage/site/page-list.aspx">Contacts</a>
+						    </li>
+						    <li>
+							    <a href="/social/health/my-health-care.aspx">Enrolled Members</a>
+						    </li>
+					    </ul>
+				    </li>
+                    -->
+                    <!--
+    	            <li runat="server" id="liReports">
+					    <a href="/manage/site/h.aspx" data-toggle="dropdown" class='dropdown-toggle'>
+						    <span>Reports</span>
+                            <span class="caret"></span>
+					    </a>
+                        <ul class="dropdown-menu">
+						    <li>
+							    <a href="/manage/people/contact-list.aspx">Program Reports</a>
+						    </li>
+						    <li>
+							    <a href="/manage/people/member-list.aspx">Library</a>
+						    </li>
+					    </ul>
+				    </li>
+                    -->
+                </asp:PlaceHolder>
+
+                <asp:PlaceHolder ID="plhCampaign" runat="server">
+
+                </asp:PlaceHolder>
+                    <!--
+				    <li runat="server" id="liHelp">
+					    <a href="#" onclick="openHelp('Invitations'); return false;";>
+						    <span>Help</span>
+					    </a>
+				    </li>
+                    -->
+                    <li runat="server" id="liHelp2">
+					    <a href="/manage/help/faq.aspx" target="_blank">
+						    <span>Help</span>
+					    </a>
+				    </li>
+			</ul>
+                    
+            
+			<div class="user">
+                <!--
+				<ul class="icon-nav">
+					<li class='dropdown'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-check-sign"></i><span class="label label-lightred">2</span></a>
+						<ul class="dropdown-menu pull-right message-ul">
+							<li>
+								<a href="#">
+									<img src="img/demo/user-1.jpg" alt="">
+									<div class="details">
+										<div class="name">Jane Doe</div>
+										<div class="message">
+											Lorem ipsum Commodo quis nisi ...
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-2.jpg" alt="">
+									<div class="details">
+										<div class="name">John Doedoe</div>
+										<div class="message">
+											Ut ad laboris est anim ut ...
+										</div>
+									</div>
+									<div class="count">
+										<i class="icon-comment"></i>
+										<span>3</span>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-3.jpg" alt="">
+									<div class="details">
+										<div class="name">Bob Doe</div>
+										<div class="message">
+											Excepteur Duis magna dolor!
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="components-messages.html" class='more-messages'>Go to Activities Center <i class="icon-arrow-right"></i></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="icon-nav">
+					<li class='dropdown'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-bell"></i><span class="label label-lightred"></span></a>
+						<ul class="dropdown-menu pull-right message-ul">
+							<li>
+								<a href="#">
+									<img src="img/demo/user-1.jpg" alt="">
+									<div class="details">
+										<div class="name">Jane Doe</div>
+										<div class="message">
+											Lorem ipsum Commodo quis nisi ...
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-2.jpg" alt="">
+									<div class="details">
+										<div class="name">John Doedoe</div>
+										<div class="message">
+											Ut ad laboris est anim ut ...
+										</div>
+									</div>
+									<div class="count">
+										<i class="icon-comment"></i>
+										<span>3</span>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-3.jpg" alt="">
+									<div class="details">
+										<div class="name">Bob Doe</div>
+										<div class="message">
+											Excepteur Duis magna dolor!
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="components-messages.html" class='more-messages'>Go to Notification Center <i class="icon-arrow-right"></i></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="icon-nav">
+					<li class='dropdown'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope-alt"></i><span class="label label-lightred"><asp:Label ID="lblNotifications" runat="server"></asp:Label></span></a>
+						<ul class="dropdown-menu pull-right message-ul">
+							<li>
+								<a href="#">
+									<img src="img/demo/user-1.jpg" alt="">
+									<div class="details">
+										<div class="name">Jane Doe</div>
+										<div class="message">
+											Lorem ipsum Commodo quis nisi ...
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-2.jpg" alt="">
+									<div class="details">
+										<div class="name">John Doedoe</div>
+										<div class="message">
+											Ut ad laboris est anim ut ...
+										</div>
+									</div>
+									<div class="count">
+										<i class="icon-comment"></i>
+										<span>3</span>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-3.jpg" alt="">
+									<div class="details">
+										<div class="name">Bob Doe</div>
+										<div class="message">
+											Excepteur Duis magna dolor!
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="components-messages.html" class='more-messages'>Go to Message center <i class="icon-arrow-right"></i></a>
+							</li>
+						</ul>
+					</li>
+				</u>
+                -->
+				<div class="dropdown">
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown"><asp:Label ID="lblUserName" runat="server"></asp:Label> <asp:Image ID="imgProfilePicture" runat="server"/></a>
+					<ul class="dropdown-menu pull-right">
+                        <asp:PlaceHolder ID="plhAccessProfile" runat="server" Visible="false">
+						<li>
+							<a href="/social/profile/profile.aspx">My profile</a>
+						</li>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="plhAccessSite" runat="server" Visible="false">
+						<li>
+							<a href="/social/explore/frontpage.aspx">Main Site</a>
+						</li>
+                        </asp:PlaceHolder>
+						<li>
+							<asp:LinkButton runat="server" OnClick="btnLogoff_Click" ID="btnLogoff" Text="Sign Out"></asp:LinkButton>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" id="content">
+		<div id="left" class='force-full no-resize'>
+                <div class="box-content">
+				    <ul class="tiles tiles-center tiles-small" style="margin:0px 0px 0px 0px!important;">
+                        <asp:PlaceHolder ID="plhSiteLevelNavTiles" runat="server">
+					    <li class="teal">
+						    <span class="label label-info"></span>
+						    <a href="/manage/members/member-list.aspx"><span><i class="icon-user"></i></span><span class='name'>Members</span></a>
+					    </li>
+                        <li class="teal">
+						    <span class="label label-info"></span>
+						    <a href="/manage/members/spaces-list.aspx"><span><i class="icon-group"></i></span><span class='name'>Groups</span></a>
+					    </li>
+ 					    <li class="teal">
+						    <span class="label label-info"></span>
+						    <a href="/manage/site/tasks-list.aspx"><span><i class="icon-check"></i></span><span class='name'>Tasks</span></a>
+					    </li>                            
+					    <li class="teal">
+						    <span class="label label-inverse"></span>
+						    <a href="/manage/members/warnings-list.aspx"><span><i class="icon-warning-sign"></i></span><span class='name'>Warnings</span></a>
+					    </li>
+                        <!--
+					    <li class="teal">
+						    <span class="label label-inverse"></span>
+						    <a href="/social/communications/activity-center.aspx"><span><i class="icon-rss"></i></span><span class='name'>Feed</span></a>
+					    </li>
+					    <li class="teal">
+						    <span class="label label-inverse"></span>
+						    <a href="/social/communications/activity-center.aspx"><span><i class="icon-list-ol"></i></span><span class='name'>Campaigns</span></a>
+					    </li>
+					    <li class="teal">
+						    <span class="label label-inverse"></span>
+						    <a href="/social/profile/following.aspx"><span><i class="icon-envelope"></i></span><span class='name'>Email</span></a>
+					    </li>
+					    <li class="teal">
+						    <span class="label label-inverse"></span>
+						    <a href="/social/profile/following.aspx"><span><i class="icon-mobile-phone"></i></span><span class='name'>SMS</span></a>
+					    </li>
+					    <li class="teal">
+						    <span class="label label-inverse">3</span>
+						    <a href="/social/explore/videos.aspx"><span><i class="glyphicon-fire"></i></span><span class='name'>Learning</span></a>
+					    </li>
+					    <li class="teal">
+						    <span class="label label-inverse">1</span>
+						    <a href="/social/health/my-health.aspx"><span><i class="glyphicon-cardio"></i></span><span class='name'>Health</span></a>
+					    </li>
+                        -->
+                        </asp:PlaceHolder>
+				    </ul>
+                </div>
+            <asp:ContentPlaceHolder id="side_nav" runat="server">
+               
+            </asp:ContentPlaceHolder>
+
+		</div>
+		<div id="main">
+			<div class="container-fluid">
+                <div class="page-header">
+					<div class="pull-left">
+						<h1><asp:Literal ID="litPageTitle" runat="server"></asp:Literal></h1>
+					</div>
+					<div class="pull-right">
+                    <div style="padding: 10px;">
+	                    <div class="control-group">
+		                    <div class="controls">
+                                <asp:DropDownList ID="ddlSpaces" Width="280px" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSpaces_SelectedIndexChanged">
+                                </asp:DropDownList>
+		                    </div>
+	                    </div>
+                    </div>
+			    </div>
+            </div>
+            <asp:PlaceHolder ID="plhBreadcrumbs" runat="server">
+            <div class="row-fluid"> 
+                <div class="page-header">
+                    <div class="breadcrumbs">
+			            <ul>
+                            <asp:PlaceHolder ID="plhSiteHomeNav" runat="server">
+				            <li>
+					            <a href="/manage/site/default.aspx">Site Home</a>
+					            <i class="icon-angle-right"></i>
+				            </li>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="plhSpaceHomeNav" runat="server">
+				            <li>
+					            <a href="/manage/spaces/default.aspx?spaceID=<%= SpaceID%>">Program Home</a>
+					            <i class="icon-angle-right"></i>
+				            </li>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="plhCampaignHomeNav" runat="server">
+				            <li>
+					            <a href="/manage/campaigns/campaign-details.aspx?campaignID=<%= CampaignID %>">Campaign Home</a>
+					            <i class="icon-angle-right"></i>
+				            </li>
+                            </asp:PlaceHolder>
+                            <asp:PlaceHolder ID="plhCurrentPageNav" runat="server">
+				            <li>
+					            <asp:Literal ID="litCurrentPage" runat="server"></asp:Literal>
+				            </li>
+                            </asp:PlaceHolder>
+			            </ul>
+			            <div class="close-bread">
+				            <a href="#"><i class="icon-remove"></i></a>
+			            </div>
+		            </div>
+                </div>   
+            </div>
+            </asp:PlaceHolder>
+                <asp:ContentPlaceHolder id="main_features" runat="server">
+        
+                </asp:ContentPlaceHolder>
+			</div>
+	    </div>
+    </div>
+    </form>
+    <span id="lblJSUserID" style="visibility:hidden"><asp:Literal ID="litUserID" runat="server"></asp:Literal></span>
+</body>
+</html>        
+

@@ -1,0 +1,156 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+using Quartz;
+using Quartz.Portal;
+
+public partial class custom_manage_user : System.Web.UI.Page
+{
+    public string fullURL = string.Empty;
+    public string pageTitle = string.Empty;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Context.Items["UserID"] == null)
+            Response.Redirect(string.Concat("~/default.aspx?ReturnURL=", Server.UrlEncode(Request.Url.PathAndQuery)));
+        
+        if (!Page.IsPostBack)
+        {
+            // make sure that the user has permissions to manage the user
+            // get user permissions
+            qPtl_User current_user = new qPtl_User(Convert.ToInt32(Context.Items["UserID"]));
+            string highest_role = Convert.ToString(current_user.highestRole);
+            qPtl_ManagerPermission_View permission = new qPtl_ManagerPermission_View(highest_role);
+
+            bool manage_user_allowed = false;
+            plhManageUserAllowed.Visible = false;
+            plhManageUserDenied.Visible = true;
+
+            if (permission != null)
+            {
+                if (permission.ManagerPermissionID > 0)
+                {
+                    if (!permission.UserWindow.Contains("None") && !String.IsNullOrEmpty(permission.UserWindow))
+                    {
+                        manage_user_allowed = true;
+                    }
+                }
+            }
+
+            if (manage_user_allowed == true)
+            {
+                plhManageUserDenied.Visible = false;
+                plhManageUserAllowed.Visible = true;
+
+                qPtl_User user = new qPtl_User(Convert.ToInt32(Request.QueryString["recordID"]));
+
+                pageTitle = user.userName + " (" + user.firstName + " " + user.lastName + ")";
+
+                RadPanelBar1.FindItemByValue("Launch").NavigateUrl = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["CmsBasePath"]) + "/public/launch-as-user.aspx?userID=" + Request.QueryString["recordID"] + "&key=" + System.Configuration.ConfigurationManager.AppSettings["automation_key"];
+
+                Context.Items.Add("groupID", 1);
+                Context.Items.Add("GroupName", "Users");
+                Session["CurrentScopeID"] = user.scopeID;
+
+                qPtl_User currUser = new qPtl_User(Convert.ToInt32(Context.Items["UserID"]));
+                int manageRank = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["login_ManageRank"]);
+                int userHighestRank = currUser.highestRank;
+
+                string infoDisplay = String.Empty;
+                string learningDisplay = String.Empty;
+                string activityDisplay = String.Empty;
+                string warningDisplay = String.Empty;
+                string notesDisplay = String.Empty;
+                string commDisplay = String.Empty;
+                string libraryDisplay = String.Empty;
+                string contentDisplay = String.Empty;
+                string locationDisplay = String.Empty;
+
+                string currQS = "?groupID=" + Request.QueryString["groupID"] + "&recordID=" + Request.QueryString["recordID"];
+
+                if (userHighestRank <= manageRank)
+                {
+                    // has manager privledges
+                    // leave everything as is -- manager mode is default
+                    // go to the database and get the manage user information
+                    infoDisplay = "Yes";
+                    learningDisplay = "Yes";
+                    activityDisplay = "No";
+                    warningDisplay = "No";
+                    notesDisplay = "Yes";
+                    commDisplay = "Yes";
+                    libraryDisplay = "Yes";
+                    contentDisplay = "No";
+                    locationDisplay = "No";
+
+                    RadMenu1.FindItemByValue("menuBasicSummary").Visible = false;
+
+                    RadPanelBar1.FindItemByValue("basicDisplay").Visible = false;
+                    if (infoDisplay == "No")
+                        RadPanelBar1.FindItemByValue("infoDisplay").Visible = false;
+                    if (learningDisplay == "No")
+                        RadPanelBar1.FindItemByValue("learningDisplay").Visible = false;
+                    if (activityDisplay == "No")
+                        RadPanelBar1.FindItemByValue("activityDisplay").Visible = false;
+                    if (warningDisplay == "No")
+                        RadPanelBar1.FindItemByValue("warningDisplay").Visible = false;
+                    if (notesDisplay == "No")
+                        RadPanelBar1.FindItemByValue("notesDisplay").Visible = false;
+                    if (commDisplay == "No")
+                        RadPanelBar1.FindItemByValue("commDisplay").Visible = false;
+                    if (libraryDisplay == "No")
+                        RadPanelBar1.FindItemByValue("libraryDisplay").Visible = false;
+                    if (contentDisplay == "No")
+                        RadPanelBar1.FindItemByValue("contentDisplay").Visible = false;
+                    if (locationDisplay == "No")
+                        RadPanelBar1.FindItemByValue("locationDisplay").Visible = false;
+
+                    fullURL = Request.QueryString["URL"] + currQS;
+                }
+                else
+                {
+                    // does not have manager privledges
+                    RadMenu1.FindItemByValue("menuQuickActions").Visible = false;
+                    RadMenu1.FindItemByValue("menuEdit").Visible = false;
+                    RadMenu1.FindItemByValue("menuManagerSummary").Visible = false;
+                    RadMenu1.FindItemByValue("menuBasicSummary").Visible = true;
+
+                    RadPanelBar1.FindItemByValue("basicDisplay").Visible = true;
+                    RadPanelBar1.FindItemByValue("basicEdit").Visible = false;
+                    RadPanelBar1.FindItemByValue("infoDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("accountDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("learningDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("activityDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("warningDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("notesDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("commDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("libraryDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("contentDisplay").Visible = false;
+                    RadPanelBar1.FindItemByValue("locationDisplay").Visible = false;
+                    // is the current user the owner of the current record
+                    if (currUser.userID == user.userID)
+                    {
+                        // current user owns record so give them access to simple editing tools
+                        RadPanelBar1.FindItemByValue("basicEdit").Visible = true;
+
+                        fullURL = Request.QueryString["URL"] + currQS;
+                    }
+                    else
+                    {
+                        fullURL = Request.QueryString["URL"] + currQS;
+                    }
+                }
+            }
+        }
+    }
+}

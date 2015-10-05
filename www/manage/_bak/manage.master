@@ -1,0 +1,501 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="manage.master.cs" Inherits="manage_manage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	<title>QUARTZ - Dashboard</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/bootstrap.min.css") %>">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/bootstrap-responsive.min.css") %>">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery-ui.css") %>">
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css") %>">
+	<!-- PageGuide -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/pageguide/pageguide.css") %>">
+	<!-- Fullcalendar -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/fullcalendar/fullcalendar.css") %>">
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/fullcalendar/fullcalendar.print.css") %>" media="print">
+	<!-- chosen -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/chosen/chosen.css") %>">
+	<!-- select2 -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/select2/select2.css") %>">
+	<!-- icheck -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/icheck/all.css") %>">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/style.css") %>">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/themes.css") %>">
+
+
+	<!-- jQuery -->
+	<script src="<%= ResolveUrl ("~/manage/js/jquery.min.js") %>"></script>
+	
+	
+	<!-- Nice Scroll -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/nicescroll/jquery.nicescroll.min.js") %>"></script>
+	<!-- jQuery UI -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.core.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.widget.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.mouse.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.draggable.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.resizable.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.sortable.min.js") %>"></script>
+	<!-- Touch enable for jquery UI -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/touch-punch/jquery.touch-punch.min.js") %>"></script>
+	<!-- slimScroll -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/slimscroll/jquery.slimscroll.min.js") %>"></script>
+	<!-- Bootstrap -->
+	<script src="<%= ResolveUrl ("~/manage/js/bootstrap.min.js") %>"></script>
+	<!-- vmap -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.world.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.sampledata.js") %>"></script>
+	<!-- Bootbox -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/bootbox/jquery.bootbox.js") %>"></script>
+	<!-- Flot -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.bar.order.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.pie.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.resize.min.js") %>"></script>
+	<!-- imagesLoaded -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/imagesLoaded/jquery.imagesloaded.min.js") %>"></script>
+	<!-- PageGuide -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/pageguide/jquery.pageguide.js") %>"></script>
+	<!-- FullCalendar -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/fullcalendar/fullcalendar.min.js") %>"></script>
+	<!-- Chosen -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/chosen/chosen.jquery.min.js") %>"></script>
+	<!-- select2 -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/select2/select2.min.js") %>"></script>
+	<!-- icheck -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/icheck/jquery.icheck.min.js") %>"></script>
+
+	<!-- Theme framework -->
+	<script src="<%= ResolveUrl ("~/manage/js/eakroko.min.ja") %>"></script>
+	<!-- Theme scripts -->
+	<script src="<%= ResolveUrl ("~/manage/js/application.min.js") %>"></script>
+	<!-- Just for demonstration -->
+	<script src="<%= ResolveUrl ("~/manage/js/demonstration.min.js") %>"></script>
+	
+	<!--[if lte IE 9]>
+		<script src="<%= ResolveUrl ("~/manage/js/plugins/placeholder/jquery.placeholder.min.js") %>"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+	
+	
+	<div id="navigation">
+		<div class="container-fluid">
+			<a href="#" id="brand">QUARTZ</a>
+			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+			<ul class='main-nav'>
+				<li>
+					<a href="index.html">
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Tasks</span>
+						<span class="caret"></span>
+					</a>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Site</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="components-timeline.html">Timeline</a>
+						</li>
+						<li>
+							<a href="components-pagestatistics.html">Page statistics</a>
+						</li>
+						<li>
+							<a href="components-sidebarwidgets.html">Sidebar widgets</a>
+						</li>
+						<li>
+							<a href="components-messages.html">Messages &amp; Chat</a>
+						</li>
+						<li>
+							<a href="components-gallery.html">Gallery &amp; Thumbs</a>
+						</li>
+						<li>
+							<a href="components-tiles.html">Tiles</a>
+						</li>
+						<li>
+							<a href="components-icons.html">Icons &amp; Buttons</a>
+						</li>
+						<li>
+							<a href="components-elements.html">UI elements</a>
+						</li>
+						<li>
+							<a href="components-typography.html">Typography</a>
+						</li>
+						<li>
+							<a href="components-bootstrap.html">Bootstrap elements</a>
+						</li>
+						<li>
+							<a href="components-grid.html">Grid</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Members</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="tables-basic.html">Basic tables</a>
+						</li>
+						<li>
+							<a href="tables-dynamic.html">Dynamic tables</a>
+						</li>
+						<li>
+							<a href="tables-large.html">Large tables</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Learning</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="plugins-calendar.html">Email</a>
+						</li>
+						<li>
+							<a href="plugins-filemanager.html">Chat</a>
+						</li>
+						<li>
+							<a href="plugins-filetrees.html">Instant Messaging</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li class='active'>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Communications</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class='dropdown-submenu'>
+							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Text Messaging</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="more-shop-list.html">Latest</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Tasks</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Calendar</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Members</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Messages</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Add-Ons</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Reports</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Settings</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="plugins-calendar.html">Email</a>
+						</li>
+						<li>
+							<a href="plugins-filemanager.html">Chat</a>
+						</li>
+						<li>
+							<a href="plugins-filetrees.html">Instant Messaging</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Health</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="more-error.html">Error pages</a>
+						</li>
+						<li class='dropdown-submenu'>
+							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Shop</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="more-shop-list.html">List view</a>
+								</li>
+								<li>
+									<a href="more-shop-product.html">Product view</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="more-pricing.html">Pricing tables</a>
+						</li>
+						<li>
+							<a href="more-faq.html">FAQ</a>
+						</li>
+						<li>
+							<a href="more-invoice.html">Invoice</a>
+						</li>
+						<li>
+							<a href="more-userprofile.html">User profile</a>
+						</li>
+						<li>
+							<a href="more-searchresults.html">Search results</a>
+						</li>
+						<li>
+							<a href="more-login.html">Login</a>
+						</li>
+						<li>
+							<a href="more-locked.html">Lock screen</a>
+						</li>
+						<li>
+							<a href="more-email.html">Email templates</a>
+						</li>
+						<li>
+							<a href="more-blank.html">Blank page</a>
+						</li>
+						<li class='dropdown-submenu'>
+							<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Another submenu</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">This is level 3</a>
+								</li>
+								<li>
+									<a href="#">Another page here</a>
+								</li>
+								<li class='dropdown-submenu'>
+									<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Go to level 4</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">This is level 4</a>
+										</li>
+										<li>
+											<a href="#">Unlimited levels</a>
+										</li>
+										<li>
+											<a href="#">Easy to use</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+						<span>Reports</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="layouts-sidebar-hidden.html">Default hidden sidebar</a>
+						</li>
+						<li>
+							<a href="layouts-color.html">Different default color</a>
+						</li>
+						<li>
+							<a href="layouts-fixed.html">Fixed layout</a>
+						</li>
+						<li>
+							<a href="layouts-fixed-topside.html">Fixed topbar and sidebar</a>
+						</li>
+						<li class='dropdown-submenu'>
+							<a href="#">Mobile sidebar</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="layouts-mobile-slide.html">Slide</a>
+								</li>
+								<li>
+									<a href="layouts-mobile-button.html">Button</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="layouts-footer.html">Footer</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="user">
+				<ul class="icon-nav">
+					<li class='dropdown'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-envelope-alt"></i><span class="label label-lightred">4</span></a>
+						<ul class="dropdown-menu pull-right message-ul">
+							<li>
+								<a href="#">
+									<img src="img/demo/user-1.jpg" alt="">
+									<div class="details">
+										<div class="name">Jane Doe</div>
+										<div class="message">
+											Lorem ipsum Commodo quis nisi ...
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-2.jpg" alt="">
+									<div class="details">
+										<div class="name">John Doedoe</div>
+										<div class="message">
+											Ut ad laboris est anim ut ...
+										</div>
+									</div>
+									<div class="count">
+										<i class="icon-comment"></i>
+										<span>3</span>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="img/demo/user-3.jpg" alt="">
+									<div class="details">
+										<div class="name">Bob Doe</div>
+										<div class="message">
+											Excepteur Duis magna dolor!
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="components-messages.html" class='more-messages'>Go to Message center <i class="icon-arrow-right"></i></a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown sett">
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-cog"></i></a>
+						<ul class="dropdown-menu pull-right theme-settings">
+							<li>
+								<span>Layout-width</span>
+								<div class="version-toggle">
+									<a href="#" class='set-fixed'>Fixed</a>
+									<a href="#" class="active set-fluid">Fluid</a>
+								</div>
+							</li>
+							<li>
+								<span>Topbar</span>
+								<div class="topbar-toggle">
+									<a href="#" class='set-topbar-fixed'>Fixed</a>
+									<a href="#" class="active set-topbar-default">Default</a>
+								</div>
+							</li>
+							<li>
+								<span>Sidebar</span>
+								<div class="sidebar-toggle">
+									<a href="#" class='set-sidebar-fixed'>Fixed</a>
+									<a href="#" class="active set-sidebar-default">Default</a>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class='dropdown colo'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown"><i class="icon-tint"></i></a>
+						<ul class="dropdown-menu pull-right theme-colors">
+							<li class="subtitle">
+								Predefined colors
+							</li>
+							<li>
+								<span class='red'></span>
+								<span class='orange'></span>
+								<span class='green'></span>
+								<span class="brown"></span>
+								<span class="blue"></span>
+								<span class='lime'></span>
+								<span class="teal"></span>
+								<span class="purple"></span>
+								<span class="pink"></span>
+								<span class="magenta"></span>
+								<span class="grey"></span>
+								<span class="darkblue"></span>
+								<span class="lightred"></span>
+								<span class="lightgrey"></span>
+								<span class="satblue"></span>
+								<span class="satgreen"></span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="more-locked.html" class='lock-screen' rel='tooltip' title="Lock screen" data-placement="bottom"><i class="icon-lock"></i></a>
+					</li>
+				</ul>
+				<div class="dropdown">
+					<a href="#" class='dropdown-toggle' data-toggle="dropdown">John Doe <img src="img/demo/user-avatar.jpg" alt=""></a>
+					<ul class="dropdown-menu pull-right">
+						<li>
+							<a href="more-userprofile.html">Edit profile</a>
+						</li>
+						<li>
+							<a href="#">Account settings</a>
+						</li>
+						<li>
+							<a href="more-login.html">Sign out</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" id="content">
+		<div id="left">
+			<form action="search-results.html" method="GET" class='search-form'>
+				<div class="search-pane">
+					<input type="text" name="search" placeholder="Search here...">
+					<button type="submit"><i class="icon-search"></i></button>
+				</div>
+			</form>
+            <asp:ContentPlaceHolder id="side_nav" runat="server">
+        
+            </asp:ContentPlaceHolder>
+		</div>
+		<div id="main">
+            <form id="Form1" runat="server">
+			<div class="container-fluid">
+                <asp:ContentPlaceHolder id="main_features" runat="server">
+        
+                </asp:ContentPlaceHolder>
+			</div>
+            </form>
+		</div></div>
+</body>
+</html>        
+

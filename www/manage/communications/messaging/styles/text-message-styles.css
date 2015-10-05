@@ -1,0 +1,611 @@
+﻿
+/* PAGE BACKGROUND */
+/* background color for the header at the top of the page  */
+.HeadBg {
+    background-color: #003466;
+}
+
+/* background color for the content part of the pages */
+Body
+{
+    background-color: white;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+h1, h2, h3, h4 {
+font-family: "wf_SegoeUILight","wf_SegoeUI","Segoe UI Light","Segoe WP Light","Segoe UI","Segoe","Segoe WP","Tahoma","Verdana","Arial","sans-serif";
+font-weight: 300;
+color: #1a1a1a;
+line-height: 1.25;
+margin: .25em 0 .75em;
+font-size: 1.825em;
+}
+
+
+/* PAGE BANNER */
+/* NOTE: Site Title, Site Links and Tabs are rendered by MobilePortalBanner.ascx
+/* style for the text of the site title */
+.SiteTitle {
+    font-family: Verdana Bold, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color:#666666
+}
+
+
+/* hyperlink styles of the unselected tabs */
+A.OtherSteps:link    {
+    text-decoration:    underline;
+    color:#eeeeee;
+}
+
+A.OtherSteps:visited {
+    text-decoration:    underline;
+    color:#eeeeee;
+}
+
+A.OtherSteps:active  {
+    text-decoration:    underline;
+    color:#eeeeee;
+}
+
+A.OtherSteps:hover   {
+    text-decoration:    italics;
+    color:#eeeeee;
+	font-size: 14px
+}
+
+/* text style used for most text rendered by modules */
+.Steps
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 12px;
+	color: #ffffff;    
+}
+
+/* hyperlink styles of steps */
+A.Steps:link    {
+    text-decoration:    none;
+    color:#cccccc;
+}
+
+A.Steps:visited {
+    text-decoration:    none;
+    color:#cccccc;
+}
+
+A.Steps:active  {
+    text-decoration:    none;
+    color:#cccccc;
+}
+
+A.Steps:hover   {
+    text-decoration:    underline;
+    color:#cccccc;
+}
+    
+/* text style for the site links (at extreme top-right of header) */
+.SiteLink {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold
+} 
+
+/* hyperlink style for the site links */
+A.SiteLink:link {
+    text-decoration:    none;
+    color:white;
+}
+
+A.SiteLink:visited  {
+    text-decoration:    none;
+    color:#eeeeee;
+}
+
+A.SiteLink:active   {
+    text-decoration:    none;
+    color:#eeeeee;
+}
+
+A.SiteLink:hover    {
+    text-decoration:    underline;
+    color:white;
+}
+
+/* style for separator between site links */
+.Accent
+{
+	color: red;
+    font-weight:    bold;
+}
+
+/* style for delete warning messages */
+.Delete
+{
+    font-family: Verdana, Helvetica, sans-serif;
+	font-size: 16px;
+	color: red;
+    font-weight: bold;
+}
+
+/* MODULE-SPECIFIC */
+/* text style for reading messages in Discussion */    
+.Message    {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    font-size: 11px;
+    background-color: #eeeeee
+}   
+
+/* GENERAL */
+/* style for module titles */
+.Head   {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  18px;
+    font-weight:    normal;
+    color: #003466;
+}
+
+.HeadSmaller   {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  14px;
+    font-weight:    bold;
+    color: #003466;
+}
+
+.HeadSmallest   {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  12px;
+    font-weight:    bold;
+    color: #003466;
+}
+
+
+/* module title style used instead of Head for compact rendering by QuickLinks and Signin modules */
+.SubSubHead {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:    bold;
+    color: black;
+}
+
+/* text style used for most text rendered by modules */
+.Normal
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 12px;
+    height: 12px;
+}
+
+.NormalSmall
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 10.5px;
+    font-weight: normal;
+    color: #CCCCCC;
+}
+
+/* text style used for textboxes in the admin and edit pages, for Nav compatibility */
+.NormalTextBox
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.NormalRed
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: red;
+}
+
+.NormalBold
+{
+    font-family: Segoe UI, verdana, arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.hilite
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+	color: #FFFFFF;
+}
+
+.NormalBoldGray
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+	color: #CCCCCC;
+}
+
+.NormalDarkGray
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+	color: Gray;
+}
+
+.NormalDarkGrayItalics
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+	color: Gray;
+	font-style: italic;
+}
+
+.NormalBoldDarkGray
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+	color: Gray;
+}
+
+.NormalBoldDarkGrayItalics
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+	color: Gray;
+	font-style: italic;  
+}
+
+.NormalGray
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	color: #EEEEEE;
+}
+
+.NormalItalics
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 12px;
+	font-style: italic;    
+}
+
+.NormalItalicsWhite
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 12px;
+	font-style: italic;
+	color: #FFFFFF;    
+}
+
+.NormalItalicsBold
+{
+    font-family: Segoe UI, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 12px;
+	font-style: italic;
+    font-weight: bold;    
+}
+
+/* text style for buttons and link buttons used in the portal admin pages */
+.CommandButton     {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+}
+    
+/* hyperlink style for buttons and link buttons used in the portal admin pages */
+A.CommandButton:link {
+    text-decoration:    underline;
+    color: #003466;
+}
+
+A.CommandButton:visited  {
+    text-decoration:    underline;
+    color: #003466;
+}
+
+A.CommandButton:active   {
+    text-decoration:    underline;
+    color: #003466;
+}
+
+A.CommandButton:hover    {
+    text-decoration:    underline;
+    color: #003466;
+}
+
+.ButtonLink {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #003466;
+	font-weight: bold;
+}   
+
+.SiteDescription {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #003466;
+	font-weight: bold;
+}  
+
+.StepDescription {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #003466;
+	font-weight: bold;
+}  
+
+/* hyperlink style for links that are buttons (i.e. select candidate position) */
+A.ButtonLink:link {
+    text-decoration:    underline;
+    color:#003466;
+}
+
+A.ButtonLink:visited  {
+    text-decoration:    underline;
+    color:#003466;
+}
+
+A.ButtonLink:active   {
+    text-decoration:    underline;
+    color:#003466;
+}
+
+A.ButtonLink:hover    {
+    text-decoration:    underline;
+    color:#003466;
+}
+
+/* GENERIC */
+H1  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  20px;
+    font-weight:    normal;
+    color: #666644;
+}
+
+H2  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  20px;
+    font-weight:    normal;
+    color: #666644;
+}
+
+A:link  {
+    text-decoration:    none;
+    color:  #003466;
+}
+
+A:visited   {
+    text-decoration:    none;
+    color:  #003466;
+}
+
+A:active    {
+    text-decoration:    none;
+    color:  #003466;
+}
+
+A:hover {
+    text-decoration:    underline;
+    color:  #003466;
+}
+
+SMALL   {
+    font-size:  8px;
+}
+
+BIG {
+    font-size:  14px;
+}
+
+BLOCKQUOTE, PRE {
+    font-family:    Lucida Console, monospace;
+}
+
+
+UL LI   {
+    list-style-type:    square ; /* square */
+}
+
+UL LI LI    {
+    list-style-type:    disc;
+}
+
+UL LI LI LI {
+    list-style-type:    circle;
+}
+
+OL LI   {
+    list-style-type:    decimal;
+}
+
+OL OL LI    {
+    list-style-type:    lower-alpha;
+}
+
+OL OL OL LI {
+    list-style-type:    lower-roman;
+}
+
+HR {
+    color: #666666;
+    height:1pt;
+    text-align:left
+}
+
+.BannerTitle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.CapsHeader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+.CapsHeader2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+.CapsHeader3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.CapsHeader4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+}
+.CapsHeader3Normal {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.validation {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: italic;
+	font-weight: bold;
+	color: #FF0000;
+}
+.validation2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FF0000;
+}
+
+.GridSmall {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+}
+
+/*Modal Popup*/
+.modalBackground {
+	background-color:Gray;
+}
+
+.modalPopup {
+	background-color:#ffffdd;
+	border-width:3px;
+	border-style:solid;
+	border-color:Gray;
+	padding:3px;
+	width:250px;
+}
+
+.sampleStyleA {
+	background-color:#FFF;
+}
+
+.sampleStyleB {
+	background-color:#FFF;
+	font-family:monospace;
+	font-size:10pt;
+	font-weight:bold;
+}
+
+.sampleStyleC {
+	background-color:#ddffdd;
+	font-family:sans-serif;
+	font-size:10pt;
+	font-style:italic;
+}
+
+.sampleStyleD {
+	background-color:Blue;
+	color:White;
+	font-family:Arial;
+	font-size:10pt;
+}
+
+/*Popup Control*/
+.popupControl{
+	background-color:White;
+	position:absolute;
+	visibility:hidden;
+}
+/* Content Page Layout */
+.demoarea {
+	padding:20px;
+	background:#FFF no-repeat left top;
+}
+
+.demoarea p 
+{
+	padding:5px;
+}
+
+/* contact details nested view template */
+.contact-details img
+{
+	float:left;
+	margin: 0 12px 0 6px;
+}
+* html .contact-details img { margin-left: 3px }
+
+.contact-details ul
+{
+	list-style: none;
+	list-style-type: none;
+	margin: 25px;
+}
+
+.contact-details label
+{
+	display:inline-block;
+	font-weight:bold;
+	width:100px;
+}
+
+/**********************************/
+
+.aspbtn
+{
+    height:24px;
+    border:solid 2px #3c3e39;
+    color:#000000;
+    background:url('images/aspbtn_bg.png') repeat-x;
+    vertical-align:middle;
+    font-weight:bold;
+    font-size:9pt;
+}
+
+.aspbtn:hover
+{
+    border:solid 2px #fd7a1f;
+    cursor:pointer;
+}
+
+.aspbtnContents
+{
+    height:24px;
+    border:solid 1px #454545;
+    color:#525252;
+    background:url('images/aspbtn_bg2.png') repeat-x;
+    vertical-align:middle;
+    font-weight:bold;
+    font-size:9pt;
+    vertical-align:top\9 /* IE Hack */
+}
+
+.aspbtnContents:hover
+{
+    border:solid 1px #ff6600;
+    cursor:pointer;
+    color:#000000;
+}
+
+

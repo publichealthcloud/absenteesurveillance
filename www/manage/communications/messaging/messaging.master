@@ -1,0 +1,164 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/manage/manage.master" AutoEventWireup="true" CodeFile="messaging.master.cs" Inherits="manage_communications_messaging_messaging" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="side_nav" Runat="Server">
+    <div class="subnav">
+		<div class="subnav-title">
+			<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Messaging Tools</span></a>
+		</div>
+		<ul class="subnav-menu">
+			<li>
+				<a href="#">Latest</a>
+			</li>
+			<li>
+				<a href="#">Tasks</a>
+			</li>
+			<li>
+				<a href="#">Calendar</a>
+			</li>
+			<li>
+				<a href="#">Members</a>
+			</li>
+			<li>
+				<a href="#">Groups</a>
+			</li>
+			<li>
+				<a href="#">Messages</a>
+			</li>
+			<li>
+				<a href="#">Campaigns</a>
+			</li>
+			<li>
+				<a href="#">Add-Ons</a>
+			</li>
+		</ul>
+	</div>
+	<div class="subnav">
+		<div class="subnav-title">
+			<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Actions</span></a>
+		</div>
+		<ul class="subnav-menu">
+			<li>
+				<a href="#">Add Member</a>
+			</li>
+			<li>
+				<a href="#">Create Message</a>
+			</li>
+			<li>
+				<a href="#">Send Message</a>
+			</li>
+			<li>
+				<a href="#">Email Members</a>
+			</li>
+		</ul>
+	</div>
+	<div class="subnav">
+		<div class="subnav-title">
+			<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>Admin</span></a>
+		</div>
+		<ul class="subnav-menu">
+			<li>
+				<a href="#">Wizard</a>
+			</li>
+			<li class='dropdown'>
+				<a href="#" data-toggle="dropdown">Settings</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#">Action #1</a>
+					</li>
+					<li>
+						<a href="#">Antoher Link</a>
+					</li>
+					<li class='dropdown-submenu'>
+						<a href="#" data-toggle="dropdown" class='dropdown-toggle'>Go to level 3</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">This is level 3</a>
+							</li>
+							<li>
+								<a href="#">Unlimited levels</a>
+							</li>
+							<li>
+								<a href="#">Easy to use</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Security settings</a>
+			</li>
+		</ul>
+	</div>
+	<div class="subnav subnav-hidden">
+		<div class="subnav-title">
+			<a href="#" class='toggle-subnav'><i class="icon-angle-right"></i><span>Default hidden</span></a>
+		</div>
+		<ul class="subnav-menu">
+			<li>
+				<a href="#">Menu</a>
+			</li>
+			<li class='dropdown'>
+				<a href="#" data-toggle="dropdown">With submenu</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#">Action #1</a>
+					</li>
+					<li>
+						<a href="#">Antoher Link</a>
+					</li>
+					<li class='dropdown-submenu'>
+						<a href="#" data-toggle="dropdown" class='dropdown-toggle'>More stuff</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">This is level 3</a>
+							</li>
+							<li>
+								<a href="#">Easy to use</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Security settings</a>
+			</li>
+		</ul>
+	</div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="main_features" Runat="Server">
+    <div class="page-header">
+					<div class="pull-left">
+						<h1>Text Messaging</h1>
+					</div>
+					<div class="pull-right">
+						<ul class="minitiles">
+							<li class='grey'>
+								<a href="#"><i class="icon-cogs"></i></a>
+							</li>
+							<li class='lightgrey'>
+								<a href="#"><i class="icon-globe"></i></a>
+							</li>
+						</ul>
+						<ul class="stats">
+							<li class='satgreen'>
+								<i class="icon-money"></i>
+								<div class="details">
+									<span class="big">$324,12</span>
+									<span>Balance</span>
+								</div>
+							</li>
+							<li class='lightred'>
+								<i class="icon-calendar"></i>
+								<div class="details">
+									<span class="big">February 22, 2013</span>
+									<span>Wednesday, 13:56</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+    <asp:ContentPlaceHolder id="contents" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</asp:Content>
+

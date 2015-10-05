@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="simple.master.cs" Inherits="simple" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	<title><asp:Literal ID="litTitle" runat="server"></asp:Literal></title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/manage/css/bootstrap.min.css">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="/manage/css/bootstrap-responsive.min.css">
+	<!-- icheck -->
+	<link rel="stylesheet" href="/manage/css/plugins/icheck/all.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/manage/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/manage/css/themes.css">
+
+
+	<!-- jQuery -->
+	<script src="/manage/js/jquery.min.js"></script>
+	
+	<!-- Nice Scroll -->
+	<script src="/manage/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- Validation -->
+	<script src="/manage/js/plugins/validation/jquery.validate.min.js"></script>
+	<script src="/manage/js/plugins/validation/additional-methods.min.js"></script>
+	<!-- icheck -->
+	<script src="/manage/js/plugins/icheck/jquery.icheck.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/manage/js/bootstrap.min.js"></script>
+	<script src="/manage/js/eakroko.js"></script>
+
+	<script src="/social/js/quartz.js"></script>
+
+	<!--[if lte IE 9]>
+		<script src="/manage/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+	
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="/manage/img/apple-touch-icon-precomposed.png" />
+
+</head>
+<body class='login theme-grey' style="background-color:lightgray!important;">
+
+    <div id="infoModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="#">
+	    <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="#iTitle">Modal header</h3>
+	    </div>
+	    <div class="modal-body">
+            <div id="#mBody"></div>
+	    </div>
+	    <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	    </div>
+    </div>
+
+	<div class="wrapper">
+        <a href="/default.aspx"><asp:Image ID="imgLogo" runat="server" /></a>
+		<div class="login-body">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+		</div>
+	</div>
+</body>
+</html>

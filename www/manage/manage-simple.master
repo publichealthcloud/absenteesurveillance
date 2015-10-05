@@ -1,0 +1,158 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="manage-simple.master.cs" Inherits="manage_manage" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Src="~/manage/school-districts/reports/controls/GoogleChartsHeader.ascx" TagPrefix="epg" TagName="GoogleChartsHeader" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	<title runat="server" id="manage_page_title"></title>
+
+    <telerik:RadScriptBlock ID="radScriptBlock" runat="server">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/bootstrap.min.css") %>">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/bootstrap-responsive.min.css") %>">
+    
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery-ui.css") %>">
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css") %>">
+	<!-- PageGuide -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/pageguide/pageguide.css") %>">
+	<!-- Fullcalendar -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/fullcalendar/fullcalendar.css") %>">
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/fullcalendar/fullcalendar.print.css") %>" media="print">
+	<!-- chosen -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/chosen/chosen.css") %>">
+	<!-- select2 -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/select2/select2.css") %>">
+	<!-- icheck -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/icheck/all.css") %>">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/style.css") %>">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/themes.css") %>">
+    <!-- dataTables -->
+	<link rel="stylesheet" href="<%= ResolveUrl ("~/manage/css/plugins/datatable/TableTools.css") %>">
+    <!-- Quartz CSS -->
+    <link rel="stylesheet" href="<%= ResolveUrl ("~/social/css/quartz.css") %>">
+	<!-- Daterangepicker -->
+    <link rel="stylesheet" type="text/css" media="all" href="/manage/css/plugins/daterangepicker/daterangepicker.css" />
+    <!-- Added for Azure Video -->
+    <link rel="stylesheet" href="<%# ResolveUrl ("~/social/css/playerframework.min.css") %>">
+
+	<!-- jQuery -->
+	<script src="<%= ResolveUrl ("~/manage/js/jquery.min.js") %>"></script>
+	
+	
+	<!-- Nice Scroll -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/nicescroll/jquery.nicescroll.min.js") %>"></script>
+	<!-- jQuery UI -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.core.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.widget.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.mouse.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.draggable.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.resizable.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.sortable.min.js") %>"></script>
+	<!-- Touch enable for jquery UI -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/touch-punch/jquery.touch-punch.min.js") %>"></script>
+	<!-- slimScroll -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/slimscroll/jquery.slimscroll.min.js") %>"></script>
+	<!-- Bootstrap -->
+	<script src="<%= ResolveUrl ("~/manage/js/bootstrap.min.js") %>"></script>
+	<!-- vmap -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.world.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/vmap/jquery.vmap.sampledata.js") %>"></script>
+	<!-- Bootbox -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/bootbox/jquery.bootbox.js") %>"></script>
+	<!-- Flot -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.bar.order.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.pie.min.js") %>"></script>
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/flot/jquery.flot.resize.min.js") %>"></script>
+	<!-- imagesLoaded -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/imagesLoaded/jquery.imagesloaded.min.js") %>"></script>
+	<!-- PageGuide -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/pageguide/jquery.pageguide.js") %>"></script>
+	<!-- FullCalendar -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/fullcalendar/fullcalendar.min.js") %>"></script>
+	<!-- Chosen -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/chosen/chosen.jquery.min.js") %>"></script>
+	<!-- select2 -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/select2/select2.min.js") %>"></script>
+	<!-- icheck -->
+	<script src="<%= ResolveUrl ("~/manage/js/plugins/icheck/jquery.icheck.min.js") %>"></script>
+	<!-- Daterangepicker -->
+    <script type="text/javascript" src="/manage/js/plugins/momentjs/moment.js"></script>
+    <script type="text/javascript" src="/manage/js/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <!-- JSChart -->
+    <script type="text/javascript" src="/social/js/canvasjs.min.js"></script>
+
+	<!-- Theme framework -->
+	<script src="<%= ResolveUrl ("~/manage/js/eakroko.min.js") %>"></script>
+	<!-- Theme scripts -->
+	<script src="<%= ResolveUrl ("~/manage/js/application.min.js") %>"></script>
+	<!-- Just for demonstration -->
+	<script src="<%= ResolveUrl ("~/manage/js/demonstration.min.js") %>"></script>
+	</telerik:RadScriptBlock>
+
+    <!-- Azure Video Playback -->
+    <script src="<%# ResolveUrl ("/social/js/playerframework.min.js") %>"></script>
+
+	<!-- dataTables -->
+	<script src="/manage/js/plugins/datatable/jquery.dataTables.min.js"></script>
+	<script src="/manage/js/plugins/datatable/TableTools.min.js"></script>
+	<script src="/manage/js/plugins/datatable/ColReorderWithResize.js"></script>
+	<script src="/manage/js/plugins/datatable/ColVis.min.js"></script>
+	<script src="/manage/js/plugins/datatable/jquery.dataTables.columnFilter.js"></script>
+	<script src="/manage/js/plugins/datatable/jquery.dataTables.grouping.js"></script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+    <!-- QUARTZ JAVASCRIPT -->
+    <script src="<%# ResolveUrl ("~/manage/js/quartz.js") %>?<%# DateTime.Now.Month %><%# DateTime.Now.Day %><%# DateTime.Now.Year %>"></script>
+
+    <epg:GoogleChartsHeader runat="server" ID="GoogleChartsHeader" />
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class='theme-grey'>
+    <form runat="server">
+    <telerik:RadScriptManager runat="server" ID="RadScriptManager1">
+        <Services>
+            <asp:ServiceReference path="~/services/UserInfo.asmx" />
+            <asp:ServiceReference path="~/services/Feed.asmx" />
+            <asp:ServiceReference path="~/services/MessageCenter.asmx" />
+            <asp:ServiceReference path="~/services/NotificationCenter.asmx" />
+            <asp:ServiceReference path="~/services/MemberGroups.asmx" />
+            <asp:ServiceReference path="~/services/Spaces.asmx" />
+            <asp:ServiceReference path="~/services/Campaign.asmx" />
+            <asp:ServiceReference path="~/services/FrontPageTiles.asmx" />
+            <asp:ServiceReference path="~/services/Medication.asmx" />
+        </Services>
+    </telerik:RadScriptManager>
+
+        <asp:ContentPlaceHolder id="main_features" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+    </form>
+    <span id="lblJSUserID" style="visibility:hidden"><asp:Literal ID="litUserID" runat="server"></asp:Literal></span>
+</body>
+</html>        
+

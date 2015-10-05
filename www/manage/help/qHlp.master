@@ -1,0 +1,313 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/manage/session.master" AutoEventWireup="false" CodeFile="qHlp.master.cs" Inherits="qHlp_qHlp" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register src="explorer.ascx" tagname="explorer" tagprefix="uc5" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link href="../Styles/styles.css" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl ("~/quartz.css") %>" rel="stylesheet" type="text/css" />
+    <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheet1" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+<telerik:RadScriptManager runat="server" ID="RadScriptManager1" />
+
+<script type="text/javascript">
+    function client_node_clicking(sender, event_args) {
+
+        var node = event_args.get_node();
+        var url = node.get_navigateUrl();
+
+        if (url && url != "#") {
+            //set_content_pane_url(url);
+            //event_args.set_cancel(true);
+            show_loading_panel();
+        }
+    }
+    window.onload = function () {
+        window.parent.hide_loading_panel();
+    }
+
+    function mngRequestStarted(ajaxManager, eventArgs) {
+        if (eventArgs.EventTarget.indexOf("resultsMenu") != -1) {
+            eventArgs.EnableAjax = false;
+        }
+    }
+    function radWindowClose(oWnd) {
+        oWnd.get_contentFrame().src = "about:blank";
+    }
+</script>
+        <script type="text/javascript">
+            var loadingPanel = null;
+            var pane = null;
+            var contentElement = null;
+
+            function refresh_right_pane() {
+                var splitter = $find("<%=rad_splitter_content.ClientID %>");
+                pane = splitter.getPaneById("<%=rightPane.ClientID %>");
+                var iframe = pane.getExtContentElement();
+                show_loading_panel();
+                iframe.contentWindow.location.href = iframe.contentWindow.location.href;
+            }
+
+            function refresh_site(url) {
+                location.href = "/manage/help/default.aspx?action=page&" + url;
+            }
+
+            function reset_site() {
+                location.href = "/manage/help/default.aspx";
+            }
+
+            function refresh_explorer_pane() {
+                var splitter = $find("<%=rad_splitter_content.ClientID %>");
+                var pane = splitter.getPaneById("<%=leftPane.ClientID %>");
+                pane.RefreshWindow();
+            }
+
+            function set_content_pane_url(url, show_loading) {
+                var splitter = $find("<%=rad_splitter_content.ClientID %>");
+                pane = splitter.getPaneById("<%=rightPane.ClientID %>");
+                pane.set_contentUrl(url);
+
+                if (show_loading) show_loading_panel();
+                else hide_loading_panel();
+            }
+
+            function show_loading_panel() {
+
+                if (!loadingPanel) {
+                    contentElement = "RAD_SPLITTER_PANE_CONTENT_<%=rightPane.ClientID %>";
+                    loadingPanel = $find("<%=rad_loading_panel.ClientID %>");
+                    loadingPanel.show(contentElement);
+                }
+            }            
+
+            function hide_loading_panel() {
+                if (loadingPanel) {
+                    loadingPanel.hide(contentElement);
+                    loadingPanel = null;
+                    pane = null;
+                }
+            }
+
+            function CollapseNavigationPane() {
+                var splitter = $find("<%=rad_splitter_content.ClientID %>");
+                var pane = splitter.getPaneById("<%=leftPane.ClientID %>");
+                pane.collapse ();
+            }
+
+            function close_modal_window(is_refresh) {
+                var current_window = GetRadWindow();
+                current_window.Close();
+
+                if (is_refresh) refresh_right_pane();
+            }
+
+            function GetRadWindow() {
+                var oWindow = null;
+                if (window.radWindow) oWindow = window.radWindow;
+                else if (window.frameElement.radWindow) oWindow = window.frameElement.radWindow;
+                return oWindow;
+            }
+
+            function RefreshParent() {
+                GetRadWindow().BrowserWindow.RefreshWindow();
+                GetRadWindow().Close();
+            }
+
+            function RefreshWindow() {
+                location.reload(true);
+            }
+
+            function client_item_clicking(sender, event_args) {
+
+                var item = event_args.get_item();
+                var url = item.get_navigateUrl();
+
+                if (url && url != "#") {
+                    show_loading_panel();
+                    //set_content_pane_url(url);
+                }
+                else event_args.set_cancel(true);
+
+                if (sender.close != null) sender.close();
+            }
+
+            function client_panel_clicking(sender, event_args) {
+
+                var node = event_args.get_node();
+                var url = node.get_navigateUrl();
+
+                if (url && url != "#") {
+                    //set_content_pane_url(url);
+                    //event_args.set_cancel(true);
+                    show_loading_panel();
+                }
+            }
+
+            function handle_combo_key_press(sender, args) {
+                if (args.get_domEvent().keyCode == 13) {
+                    search_redirect();
+                }
+            }
+
+            function search_redirect() {
+                var search_text = document.getElementById('<%=txtSearch.ClientID%>').value;
+                set_content_pane_url('<%= ResolveUrl ("~/manage/help/search-results.aspx") %>' + '?Query=' + search_text, true);
+
+                return false;
+            }
+
+            function createNewHelpTopic() {
+                var oWnd = parent.radopen('/manage/help/add-new-topic.aspx', "ModalEdit");
+                oWnd.Center();
+                hide_loading_panel()
+            }
+
+            function openPage(pageURL) {
+                var oWnd = parent.radopen(pageURL, "ModalEdit");
+                oWnd.Center();
+                hide_loading_panel()
+            }
+
+            function openExternalPage(pageURL) {
+                var oWnd = parent.radopen(pageURL, "External Page");
+                oWnd.Center();
+                hide_loading_panel()
+            }
+
+            function openJSWindow(pageURL, pageTitle) {
+                window.open(pageURL, pageTitle, 'width=800,height=600')
+                hide_loading_panel()
+            }
+
+            function radWindowClose(oWnd) {
+                oWnd.get_contentFrame().src = "about:blank";
+            }
+
+            function createNewHelpTopic() {
+                var url = "help-add-topic.aspx";
+
+                if (url && url != "#") {
+                    set_content_pane_url(url);
+                    show_loading_panel();
+                }
+            }
+
+            function loadHelpResources() {
+                var url = "help-resources.aspx";
+
+                if (url && url != "#") {
+                    set_content_pane_url(url);
+                    show_loading_panel();
+                }
+            }
+
+</script>
+<asp:ContentPlaceHolder runat="server" ID="cph_body_beginning" />
+        <telerik:RadAjaxManager runat="server" ID="rad_ajax_manager">        
+		    <AjaxSettings>
+                <telerik:AjaxSetting AjaxControlID="btnReloadExplorer">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="explorer" LoadingPanelID="rad_loading_panel" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+		        <telerik:AjaxSetting AjaxControlID="rad_ajax_manager">
+		            <UpdatedControls>
+		                <telerik:AjaxUpdatedControl ControlID="pnl_main" />
+		            </UpdatedControls>
+		        </telerik:AjaxSetting>
+		        <telerik:AjaxSetting AjaxControlID="pnl_main">
+		            <UpdatedControls>
+		                <telerik:AjaxUpdatedControl ControlID="pnl_main" LoadingPanelID="rad_loading_panel" />
+		            </UpdatedControls>
+		        </telerik:AjaxSetting>
+		    </AjaxSettings>
+	    </telerik:RadAjaxManager>
+	    <telerik:RadAjaxLoadingPanel runat="server" ID="rad_loading_panel" BackgroundPosition="Center" ZIndex="0" />
+		<telerik:RadFormDecorator runat="server" ID="RadFormDecorator1" DecoratedControls="Default,Zone" />
+
+		<telerik:RadSplitter runat="Server" ID="RadSplitter1" Width="100%" BorderSize="0"
+			BorderStyle="None" PanesBorderSize="0" Height="100%" Orientation="Horizontal"
+			VisibleDuringInit="false" Skin="Metro" EnableEmbeddedSkins="false">
+			<telerik:RadPane ID="topPane" runat="server" Height="48px">
+				<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#23455E"  >
+				<tr>
+				<td width="50%">
+				<div class="header">
+					<i class="icon-info-sign"></i>
+				</div>
+				</td>
+				<td align="right">
+                    <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server">
+                    <table>
+                        <tr>
+                            <td>
+                                <telerik:RadTextBox ID="txtSearch" Width="160px" runat="server"></telerik:RadTextBox>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                            </td>
+                            <td>
+                                <asp:Button runat="server" Text="Search" ID="btnSearch" OnClientClick="return search_redirect()" />
+                            </td>
+                        </tr>
+                    </table>                  
+                    </telerik:RadAjaxPanel>
+                </td>
+				</tr>
+				</table>
+			</telerik:RadPane>
+			<telerik:RadPane runat="server" ID="contentPane" Scrolling="None" Height="100%">
+				<telerik:RadSplitter runat="server" ID="rad_splitter_content" BorderStyle="None" PanesBorderSize="0" >
+					<telerik:RadPane runat="Server" ID="leftPane" Width="220px" MinWidth="220" MaxWidth="600" Height="100%" Scrolling="None">
+						<telerik:RadSplitter runat="server" ID="RadSplitter3" BorderStyle="None" PanesBorderSize="0"
+							Height="100%" Orientation="Horizontal">
+							<telerik:RadPane runat="server" ID="topLeftPane">
+                                <telerik:RadPanelBar runat="server" ID="RadPanelBar1" Width="100%"  OnClientItemClicking="client_panel_clicking">
+									<Items>
+                                       <telerik:RadPanelItem runat="server" Expanded="True" Selected="false" Text="Help Tools" Font-Bold="True">
+                                                <Items>
+                                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/AddRecord.gif" NavigateUrl="javascript:createNewHelpTopic(); return false;" Text="New Help Topic" />
+                                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/mailSearch.gif" NavigateUrl="javascript:loadHelpResources(); return false;" Text="Help Resources" />
+                                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/refresh.gif" NavigateUrl="~/manage/help/default.aspx" Text="Refresh Topics" />
+                                                </Items>
+                                        </telerik:RadPanelItem>
+                                    </Items>
+                                </telerik:RadPanelBar>
+                                <asp:LinkButton ID="btnReloadExplorer" runat="server" Text="Reload" Visible="false" OnClick="btnReloadExplorer_OnClick"></asp:LinkButton>
+							        <uc5:explorer ID="explorer" runat="server" />  
+							</telerik:RadPane>
+                        </telerik:RadSplitter>
+					</telerik:RadPane>
+					<telerik:RadSplitBar runat="server" ID="RadSplitBar1" CollapseMode="Forward" />
+			            <telerik:RadPane runat="server" ID="rightPane" ContentUrl="about:blank" />
+				        <asp:ContentPlaceHolder id="Main" runat="server" Visible="false">
+                        </asp:ContentPlaceHolder>
+				    </telerik:RadSplitter>
+			</telerik:RadPane>
+		</telerik:RadSplitter>
+
+       <telerik:RadWindowManager ID="Manage" runat="server" >
+            <Windows>
+                <telerik:RadWindow 
+                    ID="ManageUser" 
+                    Width="830px" 
+                    runat="server"
+                    Height="600px"
+                    DestroyOnClose="False"
+                    OnClientClose="radWindowClose"
+                    Title="Manage User">
+                </telerik:RadWindow>
+                <telerik:RadWindow 
+                    ID="ModalEdit" 
+                    Width="960px" 
+                    runat="server"
+                     Behaviors="Maximize,Close,Reload,Resize"
+                    Modal="True"
+                    Height="640px"
+                    OnClientClose="radWindowClose"
+                    DestroyOnClose="False"
+                    Title="Edit Record">
+                </telerik:RadWindow> 
+            </Windows>
+       </telerik:RadWindowManager>
+</asp:Content>
+

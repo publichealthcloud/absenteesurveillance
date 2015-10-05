@@ -1,0 +1,334 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="manage-user.aspx.cs" Inherits="custom_manage_user" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <telerik:RadScriptBlock runat="server">
+
+        <script type="text/javascript">
+            function set_content_pane_url(url, show_loading) {
+
+                var splitter = $find("<%=rad_splitter_content.ClientID %>");
+                pane = splitter.getPaneById("<%=rightPane.ClientID %>");
+                pane.set_contentUrl(url);
+            }
+        </script>
+
+    </telerik:RadScriptBlock>
+
+    <script src="scripts/qsProcessing.js" type="text/javascript"></script>
+
+    <script src="scripts/manageWindow.js" type="text/javascript"></script>
+
+    <script src="scripts/navigation.js" type="text/javascript"></script>
+
+    <script src="scripts/print.js" type="text/javascript"></script>
+
+    <link href="../Styles/styles.css" rel="stylesheet" type="text/css" />
+
+    <telerik:RadStyleSheetManager runat="server" ID="RadStyleSheet1" />
+    <link href="../quartz.css" rel="stylesheet" type="text/css" />
+    <title>
+        <%=pageTitle %>
+    </title>
+    <style type="text/css">
+        html, body, form
+        {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            background-color: #F2F2F2;
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+        .style1
+        {
+            width: 800px;
+            height: 500px;
+        }
+        .style2
+        {
+            height: 28px;
+        }
+        .style3
+        {
+            width: 200px;
+        }
+        .style4
+        {
+            font-family: "Segoe UI";
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:RadScriptManager ID="RadScriptManager1" runat="server" />
+        <asp:PlaceHolder ID="plhManageUserDenied" runat="server">
+            <span class="style4">You do not have permissions to manage users.</span>
+        </asp:PlaceHolder>
+        <asp:PlaceHolder ID="plhManageUserAllowed" runat="server">
+            <telerik:RadSplitter runat="Server" ID="RadSplitter1" Width="100%" Height="100%"
+                BorderSize="0" BorderStyle="None" PanesBorderSize="0" Orientation="Horizontal"
+                VisibleDuringInit="false">
+                <telerik:RadPane ID="topPane" runat="server" Height="30px" Style="overflow: visible !important">
+                    <telerik:RadMenu ID="RadMenu1" Visible="true" runat="server" 
+                        Width="100%" Height="30px" OnClientItemClicked="rmMode_ItemClicked" ExpandDelay="200"
+                        BorderStyle="None" BorderWidth="0px" Style="position: absolute">
+                        <CollapseAnimation Duration="200"></CollapseAnimation>
+                        <Items>
+                            <telerik:RadMenuItem runat="server" Text="Manage Member" Height="26px">
+                                <Items>
+                                    <telerik:RadMenuItem runat="server" Value="menuManagerSummary" Text="Summary" NavigateUrl="javascript:loadAll()">
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem runat="server" Value="menuBasicSummary" Text="Summary" NavigateUrl="javascript:loadBasicInfo()">
+                                    </telerik:RadMenuItem>
+                                    <telerik:RadMenuItem runat="server" Value="menuEdit" Text="Edit Member Data">
+                                        <Items>
+                                            <telerik:RadMenuItem runat="server" Value="menuBasic" NavigateUrl="javascript:loadUserInfo()" Text="Basic Account Info">
+                                            </telerik:RadMenuItem>
+                                            <telerik:RadMenuItem runat="server" Value="menuProfile" NavigateUrl="javascript:loadUserProfileInfo()"
+                                                Text="Member Profile">
+                                            </telerik:RadMenuItem>
+                                            <telerik:RadMenuItem runat="server" Value="menuUpdate" NavigateUrl="javascript:loadUserActive()" Text="Update Account Status">
+                                            </telerik:RadMenuItem>
+                                        </Items>
+                                    </telerik:RadMenuItem>
+                                </Items>
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Value="menuQuickActions" Text="Quick Actions" Height="26px">
+                                <Items>
+                                    <telerik:RadMenuItem runat="server" NavigateUrl="javascript:loadUserActive()" Text="Update Account Status">
+                                    </telerik:RadMenuItem>
+                                </Items>
+                            </telerik:RadMenuItem>
+                        </Items>
+                    </telerik:RadMenu>
+                </telerik:RadPane>
+                <telerik:RadPane runat="server" ID="contentPane" Scrolling="None">
+                    <telerik:RadSplitter runat="server" ID="rad_splitter_content" BorderStyle="None"
+                        PanesBorderSize="0" >
+                        <telerik:RadPane runat="Server" ID="leftPane" Width="200px" MinWidth="200" MaxWidth="600">
+                            <telerik:RadPanelBar ID="RadPanelBar1" runat="server" ExpandMode="SingleExpandedItem"
+                                Height="100%"  Width="100%" BorderWidth="0px">
+                                <CollapseAnimation Type="None" Duration="0"></CollapseAnimation>
+                                <Items>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/contacts.gif" Expanded="True"
+                                        ExpandMode="FullExpandedItem" Selected="True" Value="basicDisplay" Visible="false" Text="Profile">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadEditPhone()" Value="basicEdit" Text="My Phone Numbers">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadEditFax()" Value="basicEdit" Text="My Fax Number">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadEditPosition()" Value="basicEdit" Text="My Position Info">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadEditAboutMe()" Value="basicEdit" Text="About Me">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadEditProfilePic()" Value="basicEdit" Text="Profile Picture">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/contacts.gif" Expanded="True"
+                                        ExpandMode="FullExpandedItem" Selected="True" Value="infoDisplay" Text="Member Info">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadUserInfo()" Text="Basic Info">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadUserProfileInfo()"
+                                                Text="Complete Profile">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" Visible="false" NavigateUrl="javascript:loadStaffInfo()"
+                                                Text="Staff Info">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" Expanded="True"
+                                                ExpandMode="FullExpandedItem" Selected="True" Value="accountDisplay" Text="MEMBER TOOLS">
+                                                <Items>
+                                                    <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadUpdateUserName()" Text="Change UserName">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" Value="Password" NavigateUrl="javascript:loadChangePassword()"
+                                                        Text="Reset Password">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem Value="Roles" runat="server" NavigateUrl="javascript:loadRoles()"
+                                                        Text="Manage Permissions">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem Value="Roles" Visible="false" runat="server" NavigateUrl="javascript:loadFunctionalRoles()"
+                                                        Text="Manage Functional Roles">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem Value="Roles" Visible="true" runat="server" NavigateUrl="javascript:loadSendWelcomeEmail()"
+                                                        Text="Send Welcome Email">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadUserActive()" Text="Update Account Status">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" Target="_blank" Value="Launch" Text="Launch Site as Member">
+                                                    </telerik:RadPanelItem>
+                                            </Items>
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/my-life.png" Value="contentDisplay" Text="Member Content">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadCommentsByMe()" Text="Comments Member Made">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadCommentsAboutMe()" Text="Comments About Member">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadImages()" Text="Photos">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadStories()" Text="Blogs">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadVideos()" Text="Videos">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/my-life.png" Value="learningDisplay" Text="Member Learning">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadInitialAssessments()" Text="Initial Assessment Results">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadUserTrainings()" Text="Assigned Trainings">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:viewTrainingCerts()" Text="Uploaded Certificates">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" Expanded="True"
+                                                ExpandMode="FullExpandedItem" Selected="True" Value="accountDisplay" Text="LEARNING TOOLS">
+                                                <Items>
+                                                    <telerik:RadPanelItem runat="server" Value="Password" NavigateUrl="javascript:loadCreateTrainings()"
+                                                        Text="Assign Trainings">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" Value="Password" NavigateUrl="javascript:loadMarkInPersonComplete()"
+                                                        Text="Mark Training As Attended">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" Value="Password" NavigateUrl="javascript:loadManageTrainings()"
+                                                        Text="Manage Trainings">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" NavigateUrl="javascript:uploadTrainingCert()"
+                                                        Text="Upload Training Certificate">
+                                                    </telerik:RadPanelItem>
+                                                    <telerik:RadPanelItem runat="server" Value="Password" NavigateUrl="javascript:loadResetTrainings()"
+                                                        Text="Reset/Delete Trainings">
+                                                    </telerik:RadPanelItem>
+                                            </Items>
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/activity.png" Visible="false" Value="activityDisplay" Text="Member Activity">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadSessions()" Text="View Sessions">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadLogs()" Text="View Logs">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/warning.png" Visible="false" Value="warningDisplay" Text="Member Warnings">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadStrikes()" Text="View All Strikes">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" Value="Strikes" NavigateUrl="javascript:loadNewStrike()"
+                                                Text="Add Strike">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" IsSeparator="True">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadWarnings()" Text="View All Warnings">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadNewWarning()" Text="Add Warning">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" IsSeparator="True">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadBans()" Text="View All Bans">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadNewBan()" Text="Add Ban">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/notes.gif" Value="notesDisplay" Text="Member Notes">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadNotes()" Text="View All Notes"
+                                                ImageUrl="~/images/notesItems.gif">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadNewNote()" Text="Add Note"
+                                                ImageUrl="~/images/notesItems.gif">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/gis.gif" Value="locationDisplay" Text="Member Maps">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadMapGovt()" Text="Government Info">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadMapCensus()" Text="Census Data">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadMap()" Text="Map It!">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem ImageUrl="~/images/mail.gif" runat="server" Value="commDisplay" Text="Member Messsaging">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadSMSLogs()" ImageUrl="~/images/mailSent.gif"
+                                                Text="View SMS Log">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:sendPrebuiltSMS()" ImageUrl="~/images/mailItems.gif"
+                                                Text="Send Pre-built SMS">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:sendCustomSMS()" ImageUrl="~/images/mailItems.gif"
+                                                Text="Send Custom SMS">
+                                            </telerik:RadPanelItem>
+                                             <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadUserContactPreferences()"
+                                                Text="Contact Preferences">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem ImageUrl="~/images/activity.png" runat="server" Value="customDisplay" Text="Monitoring Logs">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadAddictionMonitoringLogs()"
+                                                Text="View Monitoring Log">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem ImageUrl="~/images/my-life.png" runat="server" Value="customAssessments" Text="Monthly Assessments">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadPhoneAssessments()"
+                                                Text="View Assessments">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:loadNewPhoneAssessment()"
+                                                Text="Add New Assessment">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                    <telerik:RadPanelItem runat="server" ImageUrl="~/images/folderList.gif" Value="libraryDisplay" Text="Member Library">
+                                        <Items>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:viewLibrary()" ImageUrl="~/images/mailfolder.gif"
+                                                Text="View Member Library">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:fileUpload()" ImageUrl="~/images/mailfolder.gif"
+                                                Text="Upload File">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:viewTrainingCerts()" ImageUrl="~/images/mailfolder.gif"
+                                                Text="View Training Certificates">
+                                            </telerik:RadPanelItem>
+                                            <telerik:RadPanelItem runat="server" NavigateUrl="javascript:uploadTrainingCert()" ImageUrl="~/images/mailfolder.gif"
+                                                Text="Upload Training Certificate">
+                                            </telerik:RadPanelItem>
+                                        </Items>
+                                    </telerik:RadPanelItem>
+                                </Items>
+                                <ExpandAnimation Type="None" Duration="100"></ExpandAnimation>
+                            </telerik:RadPanelBar>
+                        </telerik:RadPane>
+                        <telerik:RadSplitBar runat="server" ID="RadSplitBar1" CollapseMode="Forward" />
+                        <telerik:RadPane runat="server" ID="rightPane" Scrolling="Both" />
+                    </telerik:RadSplitter>
+                </telerik:RadPane>
+            </telerik:RadSplitter>
+        </asp:PlaceHolder>
+    </form>
+</body>
+</html>

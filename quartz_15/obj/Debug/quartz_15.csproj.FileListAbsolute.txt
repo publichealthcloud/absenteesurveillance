@@ -1,0 +1,6 @@
+C:\websites\quartz_15\quartz_15\obj\Debug\quartz_15.csprojResolveAssemblyReference.cache
+C:\websites\quartz_15\quartz_15\bin\Debug\quartz_15.dll.config
+C:\websites\quartz_15\quartz_15\bin\Debug\quartz_15.dll
+C:\websites\quartz_15\quartz_15\bin\Debug\quartz_15.pdb
+C:\websites\quartz_15\quartz_15\obj\Debug\quartz_15.dll
+C:\websites\quartz_15\quartz_15\obj\Debug\quartz_15.pdb

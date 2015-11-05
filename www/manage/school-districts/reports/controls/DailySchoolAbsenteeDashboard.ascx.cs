@@ -30,8 +30,8 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
     {
         get { return summary; }
         set { summary = value; }
-    }   
-    
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -59,7 +59,7 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
             litSchoolFax.Text = school.SchoolFax;
             litSchoolLevel.Text = school.SchoolLevel;
             litDistrict.Text = school.District;
-            
+
             // get classroom data
             List<ClassroomData> data = new List<ClassroomData>();
             data = qHtl_DailyClassroomAbsenteeData.LoadDailyClassroomDataInfoList(curr_date, school_id);
@@ -269,6 +269,10 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
                     {
                         prior_status_html += "<td width=\"70%\" align=\"center\"><a class=\"btn btn-purple\" href=\"javascript:openSchoolWindowGeneric('/manage/school-districts/school-default.aspx?schoolID=" + r.school_id + "&currDate=" + r.data_date + "')\"><font color=\"white\">Sustained Increase Alert <i class=\"icon-warning-sign\"></i></font></a></td>";
                     }
+                    else if (r.f_warning == true)
+                    {
+                        prior_status_html += "<td width=\"70%\" align=\"center\"><a class=\"btn btn-green\" href=\"javascript:openSchoolWindowGeneric('/manage/school-districts/school-default.aspx?schoolID=" + r.school_id + "&currDate=" + r.data_date + "')\"><font color=\"white\">2 Sigma Alert <i class=\"icon-warning-sign\"></i></font></a></td>";
+                    }
                     else
                     {
                         prior_status_html += "<td width=\"70%\" align=\"center\">Normal <i class=\"icon-ok-sign\"></i></font></td>";
@@ -335,7 +339,7 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
                     warning_html_color = "#e51400";
                     a_e_warnings++;
                 }
-                if (daily_summary.B_Warning == true)
+                else if (daily_summary.B_Warning == true)
                 {
                     if (!String.IsNullOrEmpty(warning_type))
                         warning_type += ", Sustained 2-3 Sigma Watch";
@@ -349,7 +353,7 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
                     warning_html_color = "#f8a31f";
                     warning_color = "btn-orange";
                 }
-                if (daily_summary.C_Warning == true)
+                else if (daily_summary.C_Warning == true)
                 {
                     if (!String.IsNullOrEmpty(warning_type))
                         warning_type += ", Consistently Above Mean Watch";
@@ -363,7 +367,20 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
                     warning_html_color = "#ffff00";
                     font_color = "black";
                 }
-                if (daily_summary.D_Warning == true)
+                else if (daily_summary.F_Warning == true)
+                {
+                    if (!String.IsNullOrEmpty(warning_type))
+                        warning_type += ", 2 Sigma Alert";
+                    else
+                        warning_type = "2 Sigma Alert";
+                    warning_message += " (2 Sigma Alert triggered for a school when current day absentee rate is greater than 2 sigma of the absentee rate)";
+                    tip_message += " Data = [current day absentee rate = " + daily_summary.Rate + ", 2 sigma absentee rate = " + daily_summary.F_WarningValues + "]";
+                    //warnings_html += "<li> <span class=\"label label-important\">" + warning_type + "</span> <a href=\"#\" rel=\"popover\" data-trigger=\"hover\" data-placement=\"left\" title=\"\" data-content=\"" + tip_message + "\" data-original-title=\"" + warning_type + " at " + daily_summary.School + "\">" + warning_message + " <i class=\"icon-exclamation-sign\"></i></li>";
+                    a_e_warnings++;
+                    warning_html_color = "#393";
+                    warning_label = "btn-green";
+                }
+                else if (daily_summary.D_Warning == true)
                 {
                     if (!String.IsNullOrEmpty(warning_type))
                         warning_type += ", Sustained Above 1 Sigma Alert";
@@ -376,7 +393,7 @@ public partial class school_districts_reports_DailySchoolAbsenteeDashboard : Sys
                     warning_html_color = "#368ee0";
                     warning_label = "btn-blue";
                 }
-                if (daily_summary.E_Warning == true)
+                else if (daily_summary.E_Warning == true)
                 {
                     if (!String.IsNullOrEmpty(warning_type))
                         warning_type += ", Sustained Increase Alert";

@@ -29,15 +29,15 @@ public partial class school_districts_reports_DailyDistrictAbsenteeDashboard : S
     {
         get { return summary; }
         set { summary = value; }
-    }   
-    
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
             // get district day summary
             var daily_summary = qHtl_DailySchoolDistrictAbsenteeSummary.GetDailySummaryByDate(Convert.ToString(curr_date));
-            
+
             // get school data
             List<SchoolData> data = new List<SchoolData>();
             data = qHtl_DailySchoolAbsenteeData.LoadDailySchoolDataInfoList(curr_date);
@@ -209,7 +209,7 @@ public partial class school_districts_reports_DailyDistrictAbsenteeDashboard : S
                     strJSMap += "'</div>'+\n";
                     strJSMap += "'</div>';\n\n";
                     strJSMap += "var infowindow_" + s.school_id + " = new google.maps.InfoWindow({content: contentString_" + s.school_id + "  });\n";
-                    
+
                     strJSMap += "var pinColor_" + s.school_id + " = \"" + map_color + "\";\n";
                     strJSMap += "var pinImage_" + s.school_id + " = new google.maps.MarkerImage(\"http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|\" + pinColor_" + s.school_id + ",\n";
                     strJSMap += "new google.maps.Size(21, 34),\n";
@@ -219,7 +219,7 @@ public partial class school_districts_reports_DailyDistrictAbsenteeDashboard : S
                     strJSMap += "new google.maps.Size(40, 37),\n";
                     strJSMap += "new google.maps.Point(0, 0),\n";
                     strJSMap += "new google.maps.Point(12, 35));\n";
-                    strJSMap += "var marker_"+s.school_id+" = new google.maps.Marker(\n";
+                    strJSMap += "var marker_" + s.school_id + " = new google.maps.Marker(\n";
                     strJSMap += "{\n";
                     strJSMap += "position: new google.maps.LatLng(" + s.latitude + ", " + s.longitude + "),\n";
                     strJSMap += "map: map,\n";
@@ -227,7 +227,7 @@ public partial class school_districts_reports_DailyDistrictAbsenteeDashboard : S
                     strJSMap += "shadow: pinShadow_" + s.school_id + ",\n";
                     strJSMap += "title: '" + s.school_name + "'\n";
                     strJSMap += "});\n";
-                    strJSMap += "google.maps.event.addListener(marker_"+s.school_id+", 'click', function() {\n";
+                    strJSMap += "google.maps.event.addListener(marker_" + s.school_id + ", 'click', function() {\n";
                     strJSMap += "infowindow_" + s.school_id + ".open(map,marker_" + s.school_id + ");\n";
                     strJSMap += "});\n";
                 }
@@ -472,7 +472,7 @@ public partial class school_districts_reports_DailyDistrictAbsenteeDashboard : S
                 warnings_html += "<ul>";
 
                 foreach (var d in data)
-                { 
+                {
                     string warning_type = string.Empty;
                     string warning_message = string.Empty;
                     string tip_message = string.Empty;

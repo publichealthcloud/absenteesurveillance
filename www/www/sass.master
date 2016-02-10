@@ -247,15 +247,7 @@
                                         <br />
                                         <br />
                                         <p>
-                                            <a href="/default.aspx">Home</a>
-                                                &nbsp;&nbsp;|&nbsp;&nbsp;
-                                            <a href="#" onclick="showInfoModal('about-us-text', 'About Us'); return false;">About Us</a>
-                                                &nbsp;&nbsp;|&nbsp;&nbsp;
-                                            <a href="#" onclick="showInfoModal('terms', 'Terms of Use'); return false;">Terms of Use</a>
-                                                &nbsp;&nbsp;|&nbsp;&nbsp;
-                                            <a href="#" onclick="showInfoModal('credits', 'Credits'); return false;">Credits</a>
-                                                &nbsp;&nbsp;|&nbsp;&nbsp;
-                                            <a href="#" onclick="showInfoModal('support', 'Contact Support'); return false;">Contact Support</a>
+                                            Questions? Contact info@epgtech.net with any questions.
                                         </p>
                                         <br />
                                         <p>

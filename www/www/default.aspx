@@ -37,8 +37,8 @@
 
                 <h3>Dashboard Views</h3>
                 Click on the images below to see the full-sized dashboards.<br /><br />
-                <a href="../resources/school-district-dashboard.png" target="_blank"><img src="../resources/school-district-dashboard.png.ashx?width=250&height=300&mode=crop" /></a>
-                <a href="../resources/school-dashboard.png" target="_blank"><img src="../resources/school-dashboard.png.ashx?width=250&height=300&mode=crop" /></a>
+                <a href="images/school-district-dashboard.png" target="_blank"><img src="images/school-district-dashboard.png.ashx?width=250&height=300&mode=crop" /></a>
+                <a href="images/school-dashboard.png" target="_blank"><img src="images/school-dashboard.png.ashx?width=250&height=300&mode=crop" /></a>
 <h3>Necessary Data</h3>
 The solution requires two sets of data to operate:
         <ul>

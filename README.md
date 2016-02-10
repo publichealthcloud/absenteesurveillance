@@ -20,3 +20,5 @@ You can find all necessary code and a template database (.bak file) in this solu
 
 Additionally, to get the Gooogle maps to work correctly, you will have to get a Google API key. This can easily be changed in the web.config file of the solution as well.
 
+Contact Michael Fiore at info@epgtech.net with any technical questions.
+

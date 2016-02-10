@@ -27,14 +27,20 @@
         <div class="row-fluid">
             <div class="span9">
                 <div style="height:30px;"></div>
-                
+               <h3>Introduction</h3> 
         SASS is an online absentee surveillance system designed for use by school districts and public health agencies. The system is optimized to process, analyze and display daily absentee data for a school district. The system not only displays absentee trends but also generates a range of different absentee warnings based on complex rules. <strong>The SASS platform is completely free to anyone who wants to download and run the software.</strong>
                 <br /><br />
                 <asp:HyperLink runat="server" ID="hplDownloadNow" CssClass="btn btn-danger" NavigateUrl="https://github.com/publichealthcloud/absenteesurveillance" Target="_blank"><i class="glyphicon-download_alt"></i> Download SASS Solution</asp:HyperLink>&nbsp;&nbsp;
                 <asp:HyperLink runat="server" ID="phlGettingStartedDocument" NavigateUrl="/resources/school absentee surveillance system - getting started.pdf" Target="_blank" CssClass="btn"><i class="glyphicon-circle_info"></i> Getting Started Document</asp:HyperLink>
 <br /><br />
         The solution consists of a district wide absentee dashboard as well as school-specific dashboards. The solution also consists of tools for uploading data files and downloading processed data. All data loaded into the system can be easily downloaded for additional processing.
-<br /><br />The solution requires two sets of data to operate:
+
+                <h3>Dashboard Views</h3>
+                Click on the images below to see the full-sized dashboards.<br /><br />
+                <a href="../resources/school-district-dashboard.png" target="_blank"><img src="../resources/school-district-dashboard.png.ashx?width=250&height=300&mode=crop" /></a>
+                <a href="../resources/school-dashboard.png" target="_blank"><img src="../resources/school-dashboard.png.ashx?width=250&height=300&mode=crop" /></a>
+<h3>Necessary Data</h3>
+The solution requires two sets of data to operate:
         <ul>
             <li>
 (1)	<strong>A <u>one-time</u> upload of school information for a district</strong> – an Excel file with the name, address, educational level of every school in the district
@@ -77,7 +83,7 @@ UnknownIllness - 0<br />
                 <div style="height:20px;"></div>
             </div>
             <div class="span3">
-            <strong>SASS Partners include:</strong> University of Utah School of Public Healt and Davis County, Utah.
+            <strong>SASS Partners include:</strong> University of Utah School of Public Health and Davis County, Utah (School District and Department of Public Health).
             </div>
         </div>  
         <div class="row-fluid">

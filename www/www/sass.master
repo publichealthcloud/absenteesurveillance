@@ -208,11 +208,6 @@
 		<div class="container-fluid">
 			<a href="/default.aspx" id="brand"><asp:Literal ID="litTitle" runat="server">UTAH</asp:Literal></a>
 			<ul class='main-nav'>
-				<li runat="server" id="liFrontpage">
-					<a href="/www/default.aspx">
-						<span>Home</span>
-					</a>
-				</li>
 				<li runat="server" id="liRegister">
 					<a href="https://github.com/publichealthcloud/absenteesurveillance.git" target="_blank">
 						<span>Download Code</span>

@@ -20,13 +20,6 @@ public partial class www_lms_default : System.Web.UI.Page
             qSoc_Element intro = new qSoc_Element("homepage-intro-text");
             string intro_html = intro.HTML;
             litIntroText.Text = intro_html;
-
-            bool register_disabled = false;
-            if (!String.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Register_RegisterDisabled"]))
-                register_disabled = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["Register_RegisterDisabled"]);
-
-            if (register_disabled == true)
-                plhRegisterNowLink.Visible = false;
         }
     }
 }

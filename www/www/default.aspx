@@ -9,19 +9,9 @@
     <div class="row-fluid">
         <div class="span12">
             <div id="profile-background-pic" style="z-index: 1; position: relative;">
-                    <div style="position: relative; left: 0px; top: 0px;"><img src="images/training-banner3.jpg" />
+                    <div style="position: relative; left: 0px; top: 0px;"><img src="images/sass-background-graphic.jpg" />
                     </div>
                 </div>
-                <div style="position: relative; bottom: 175px; left: 25px; z-index: 1000; height: 1px;" runat="server" ID="divAdditionalOption" visible="false" >
-                    <div style="padding: 3px; width: 201px; height: 151px; background-color: white">                    
-                        <asp:Image runat="server" ID="imgSpaceSpecialImage" />
-                    </div>
-                </div>
-                <asp:PlaceHolder ID="plhRegisterNowLink" runat="server">
-                <div style="position: relative; bottom: 70px; left: 20px; z-index: 1000; height: 1px;" >   
-                    <h1><span style="color: white; background-color: white; padding: 5px 10px 5px 10px; filter:alpha(opacity=50); opacity:.5;"><strong><a href="https://github.com/publichealthcloud/absenteesurveillance.git" target="_blank"><asp:Label ID="lblSpaceName" runat="server"></asp:Label>Download SASS Now</strong></a></span></h1>
-                </div>
-               </asp:PlaceHolder> 
             </div>
         </div>
         <div class="row-fluid">
@@ -87,7 +77,7 @@ UnknownIllness - 0<br />
                 <div style="height:20px;"></div>
             </div>
             <div class="span3">
-
+            <strong>SASS Partners include:</strong> University of Utah School of Public Healt and Davis County, Utah.
             </div>
         </div>  
         <div class="row-fluid">

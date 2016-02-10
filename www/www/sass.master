@@ -1,0 +1,294 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="sass.master.cs" Inherits="t2x_takecontrol_main_master" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	<title><asp:Literal ID="litPageTitle" runat="server"></asp:Literal></title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/bootstrap.min.css") %>">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/bootstrap-responsive.min.css") %>">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery-ui.css") %>">
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/plugins/jquery-ui/smoothness/jquery.ui.theme.css") %>">
+	<!-- chosen -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/plugins/chosen/chosen.css") %>">
+	<!-- select2 -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/plugins/select2/select2.css") %>">
+	<!-- icheck -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/plugins/icheck/all.css") %>">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/style.css") %>">
+	<!-- Color CSS -->
+    <link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/themes.css") %>">
+    <!-- Added for Quartz --> 
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/quartz.css") %>">    
+    <!-- fancy tiles features - windows, slideshow, etc -->
+	<link rel="stylesheet" href="<%# ResolveUrl ("~/manage/css/tile-components.css") %>">   
+
+	<!-- jQuery -->
+	<script src="<%# ResolveUrl ("~/manage/js/jquery.min.js") %>"></script>
+	
+	<!-- Nice Scroll -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/nicescroll/jquery.nicescroll.min.js") %>"></script>
+	<!-- imagesLoaded -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/imagesLoaded/jquery.imagesloaded.min.js") %>"></script>
+	<!-- jQuery UI -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.core.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.widget.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.mouse.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.draggable.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.resizable.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/jquery-ui/jquery.ui.sortable.min.js") %>"></script>
+	<!-- Touch enable for jquery UI -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/touch-punch/jquery.touch-punch.min.js") %>"></script>
+	<!-- slimScroll -->
+
+	<!-- Bootstrap -->
+	<script src="<%# ResolveUrl ("~/manage/js/bootstrap.min.js") %>"></script>
+	<!-- vmap -->
+	<!-- Bootbox -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/bootbox/jquery.bootbox.js") %>"></script>
+	<!-- Bootbox -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/form/jquery.form.min.js") %>"></script>
+	<!-- Flot -- needed for all graphs/charts>
+	<!-- PageGuide -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/pageguide/jquery.pageguide.js") %>"></script>
+	<!-- FullCalendar -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/fullcalendar/fullcalendar.min.js") %>"></script>
+	<!-- Chosen -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/chosen/chosen.jquery.min.js") %>"></script>
+	<!-- Colorbox -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/colorbox/jquery.colorbox-min.js") %>"></script>
+	<!-- masonry -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/masonry/jquery.masonry.min.js") %>"></script>
+	<!-- select2 -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/select2/select2.min.js") %>"></script>
+	<!-- icheck -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/icheck/jquery.icheck.min.js") %>"></script>
+    <!-- fancy tiles features - windows, slideshow, etc -->
+	<!-- Validation -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/validation/jquery.validate.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/validation/additional-methods.min.js") %>"></script>
+	<!-- Form -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/icheck/jquery.form.min.js") %>"></script>
+	<!-- Wizard -->
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/wizard/jquery.form.wizard.min.js") %>"></script>
+	<script src="<%# ResolveUrl ("~/manage/js/plugins/mockjax/jquery.mockjax.js") %>"></script>
+    <!-- Notify -->
+    <script src="<%# ResolveUrl ("~/manage/js/plugins/gritter/jquery.gritter.min.js") %>"></script>
+    <!-- Extra Popover Controls -->
+    <script src="<%# ResolveUrl ("/manage/js/plugins/popover-extra-placements.js") %>"></script>
+
+	<!-- Theme framework -->
+	<script src="<%# ResolveUrl ("~/manage/js/eakroko.min.ja") %>"></script>
+	<!-- Theme scripts -->
+	<script src="<%# ResolveUrl ("~/manage/js/application.min.js") %>"></script>
+
+	<!-- Theme framework -->
+	<script src="/manage/js/eakroko.min.js"></script>
+	
+	<!--[if lte IE 9]>
+		<script src="<%# ResolveUrl ("~/manage/js/plugins/placeholder/jquery.placeholder.min.js") %>"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+
+    <!-- QUARTZ JAVASCRIPT -->
+    <script src="<%# ResolveUrl ("~/manage/js/quartz.js") %>?<%# DateTime.Now.Month %><%# DateTime.Now.Day %><%# DateTime.Now.Year %>"></script>
+    <script src="<%# ResolveUrl ("~/manage/js/custom/learning.js") %>?<%# DateTime.Now.Month %><%# DateTime.Now.Day %><%# DateTime.Now.Year %>"></script>
+    <script src="<%# ResolveUrl ("~/manage/js/custom/campaign.js") %>?<%# DateTime.Now.Month %><%# DateTime.Now.Day %><%# DateTime.Now.Year %>"></script>
+
+    <script type="text/javascript">
+        var resources_url = '<%# Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["link_documentLocation"]) %>';
+    </script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/www/t2x/takecontrol/images/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+    <script type="text/javascript">
+        $(function () {
+
+            // Find all YouTube videos
+            var $allVideos = $("iframe[src^='//www.youtube.com']"),
+
+                // The element that is fluid width
+                $fluidEl = $("#video");
+
+            // Figure out and save aspect ratio for each video
+            $allVideos.each(function () {
+
+                $(this)
+                    .data('aspectRatio', this.height / this.width)
+
+                    // and remove the hard coded width/height
+                    .removeAttr('height')
+                    .removeAttr('width');
+
+            });
+
+            // When the window is resized
+            // (You'll probably want to debounce this)
+            $(window).resize(function () {
+
+                var newWidth = $fluidEl.width();
+
+                // Resize all videos according to their own aspect ratio
+                $allVideos.each(function () {
+
+                    var $el = $(this);
+                    $el
+                        .width(newWidth)
+                        .height(newWidth * $el.data('aspectRatio'));
+
+                });
+
+                // Kick off one resize to fix all videos on page load
+            }).resize();
+
+        });
+    </script>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class='theme-grey' data-layout="fixed" data-mobile-sidebar="button" " data-layout-topbar="fixed">
+    <form id="Form1" runat="server">
+
+    <!-- Support for Quartz Webservices --> 
+    <telerik:RadScriptManager runat="server" ID="RadScriptManager1">
+    </telerik:RadScriptManager>
+
+    <telerik:RadToolTipManager ID="radTooltipManageJS" runat="server" Position="BottomCenter"
+        Animation="Fade" Width="350px" Height="200px" Style="font-size: 18px; text-align: center; 
+        font-family: Arial;" RelativeTo="Element" Modal="false" HideEvent="LeaveTargetAndToolTip" IgnoreAltAttribute="true">
+        <WebServiceSettings Method="GetToolTipData" Path="~/services/ToolTipWebService.asmx"></WebServiceSettings>
+    </telerik:RadToolTipManager>
+
+    <telerik:RadAjaxLoadingPanel ID="LoadingPanel1" runat="server" BackgroundPosition="Center">
+    </telerik:RadAjaxLoadingPanel>
+
+    <div id="elementModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="#">
+	    <div class="modal-header">
+		    <button type="button" id="#element_close_top" class="close" onclick="closeElementModal(); return false;" aria-hidden="true">×</button>
+		    <h3 id="#mTitle">Media Viewer</h3>
+	    </div>
+	    <div class="modal-body" id="#elementBody">
+	    </div>
+	    <div class="modal-footer">
+		    <button type="button" id="#element_close_bottom" class="btn" onclick="closeElementModal(); return false;" aria-hidden="true">Close</button>
+	    </div>
+    </div>
+
+    <div id="trainingModal"  class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="#">
+	    <div class="modal-header">
+		    <button type="button" class="close" onclick="javascript:location.reload();" aria-hidden="true">×</button>
+		    <h3 id="#trainingTitle">Media Viewer</h3>
+	    </div>
+	    <div class="modal-body" id="#trainingBody">
+	    </div>
+    </div>
+    
+	<div id="navigation">
+		<div class="container-fluid">
+			<a href="/default.aspx" id="brand"><asp:Literal ID="litTitle" runat="server">UTAH</asp:Literal></a>
+			<ul class='main-nav'>
+				<li runat="server" id="liFrontpage">
+					<a href="/www/default.aspx">
+						<span>Home</span>
+					</a>
+				</li>
+				<li runat="server" id="liRegister">
+					<a href="https://github.com/publichealthcloud/absenteesurveillance.git" target="_blank">
+						<span>Download Code</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+    
+	<div class="container-fluid nav-hidden" id="content">
+        <asp:ContentPlaceHolder id="side_nav" runat="server">
+        
+        </asp:ContentPlaceHolder>
+		<div id="main">
+            <div class="container-fluid">
+                <div class="page-header">
+			        <div class="pull-left">
+				        <img src="/resources/logo.png" alt="SASS" />
+			        </div>
+                    <div class="pull-right" style="padding-top: 50px!important; padding-right: 40px!important;">
+                        <div id="header_latest">
+			                <div class='search-form' id="header_search">
+                                <a href="/logon.aspx" class="btn btn-primary">Sign  In</a>
+                            </div>
+                        </div>
+                    </div>  
+		        </div>           
+			    
+                <asp:ContentPlaceHolder id="main_features" runat="server">
+        
+                </asp:ContentPlaceHolder>
+                    <div class="row-fluid">
+		                <div class="span12">
+			                <div class="row-fluid">
+                                <div style="text-align: center;">
+                                    <div style="display: inline-block;">
+                                        <br />
+                                        <br />
+                                        <p>
+                                            <a href="/default.aspx">Home</a>
+                                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                            <a href="#" onclick="showInfoModal('about-us-text', 'About Us'); return false;">About Us</a>
+                                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                            <a href="#" onclick="showInfoModal('terms', 'Terms of Use'); return false;">Terms of Use</a>
+                                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                            <a href="#" onclick="showInfoModal('credits', 'Credits'); return false;">Credits</a>
+                                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                            <a href="#" onclick="showInfoModal('support', 'Contact Support'); return false;">Contact Support</a>
+                                        </p>
+                                        <br />
+                                        <p>
+                                            <asp:Literal ID="litFooter" runat="server"></asp:Literal>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+		</div>
+	</div>
+ 
+    <div id="infoModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="#">
+	    <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="#iTitle">Modal header</h3>
+	    </div>
+	    <div class="modal-body">
+            <div id="Div1"></div>
+	    </div>
+	    <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	    </div>
+    </div>
+
+	</form>
+</body>
+</html>        
+

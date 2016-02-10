@@ -5,30 +5,28 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class www_default : System.Web.UI.Page
+using Quartz.Social;
+
+public partial class www_lms_default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // if active session, then pass to manage nav page
-        int curr_user_id = 0;
-        bool active_session = false;
-
-        if (!String.IsNullOrEmpty(Convert.ToString(Context.Items["UserID"])))
+        if (!Page.IsPostBack)
         {
-            curr_user_id = Convert.ToInt32(Context.Items["UserID"]);
-            if (curr_user_id > 0)
-                active_session = true;
-        }
+            qSoc_Element title = new qSoc_Element("homepage-title");
+            string title_html = title.HTML;
+            litIntroTitle.Text = title_html;
 
-        if (active_session == true)
-            Response.Redirect("~/utilities/manage-user-access.aspx");
-        else
-        {
-            string custom_start_page = System.Configuration.ConfigurationManager.AppSettings["Site_PublicStartPage"];
-            if (!String.IsNullOrEmpty(custom_start_page))
-                Response.Redirect(custom_start_page);
-            else
-                Response.Redirect("~/logon.aspx");
+            qSoc_Element intro = new qSoc_Element("homepage-intro-text");
+            string intro_html = intro.HTML;
+            litIntroText.Text = intro_html;
+
+            bool register_disabled = false;
+            if (!String.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Register_RegisterDisabled"]))
+                register_disabled = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["Register_RegisterDisabled"]);
+
+            if (register_disabled == true)
+                plhRegisterNowLink.Visible = false;
         }
     }
 }

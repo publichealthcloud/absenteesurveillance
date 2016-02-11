@@ -83,7 +83,7 @@ UnknownIllness - 0<br />
                 <div style="height:20px;"></div>
             </div>
             <div class="span3">
-            <strong>SASS Partners include:</strong> University of Utah School of Public Health and Davis County, Utah (School District and Department of Public Health).
+            <strong>SASS Partners include:</strong> University of Utah Division of Public Health and Davis County, Utah (School District and Department of Public Health).
             </div>
         </div>  
         <div class="row-fluid">

@@ -52,7 +52,7 @@ public partial class logon : System.Web.UI.UserControl
 
         int user_id = Convert.ToInt32(Context.Items["UserID"]);
         if (user_id > 0)
-            Response.Redirect("~/social/explore/frontpage.aspx");
+            Response.Redirect("~/utilities/manage-user-access.aspx");
     }
 
 

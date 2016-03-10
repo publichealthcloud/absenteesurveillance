@@ -30,7 +30,7 @@
                <h3>Introduction</h3> 
         SASS is an online absentee surveillance system designed for use by school districts and public health agencies. The system is optimized to process, analyze and display daily absentee data for a school district. The system not only displays absentee trends but also generates a range of different absentee warnings based on complex rules. <strong>The SASS platform is completely free to anyone who wants to download and run the software.</strong>
                 <br /><br />
-                <asp:HyperLink runat="server" ID="hplDownloadNow" CssClass="btn btn-danger" NavigateUrl="https://github.com/publichealthcloud/absenteesurveillance" Target="_blank"><i class="glyphicon-download_alt"></i> Download SASS Solution</asp:HyperLink>&nbsp;&nbsp;
+                <asp:HyperLink runat="server" ID="hplDownloadNow" CssClass="btn btn-danger" NavigateUrl="https://github.com/publichealthcloud/absenteesurveillance" Target="_blank"><i class="glyphicon-download_alt"></i> Download SASS Solution from GitHub</asp:HyperLink>&nbsp;&nbsp;
                 <asp:HyperLink runat="server" ID="phlGettingStartedDocument" NavigateUrl="images/school absentee surveillance system - getting started.pdf" Target="_blank" CssClass="btn"><i class="glyphicon-circle_info"></i> Getting Started Document</asp:HyperLink>
 <br /><br />
         The solution consists of a district wide absentee dashboard as well as school-specific dashboards. The solution also consists of tools for uploading data files and downloading processed data. All data loaded into the system can be easily downloaded for additional processing.
@@ -84,7 +84,17 @@ UnknownIllness - 0<br />
             </div>
             <div class="span3">
             <strong>SASS Partners include:</strong> University of Utah Division of Public Health and Davis County, Utah (School District and Department of Public Health).
+                <br /><br />
+                <strong>Credits:</strong>
+The development of this software solution was supported by the Cooperative Agreement Number
+3P01TP000303-04S1 from The Centers for Disease Control and Prevention. Its contents are solely the
+responsibility of the authors and do not necessarily represent the official views of the Centers for
+Disease Control and Prevention.
+                <br /><br />
+                <strong>Contact Info:</strong> Contact Michael Fiore at info@epgtech.net with any technical questions.
             </div>
+
+            
         </div>  
         <div class="row-fluid">
             <div class="span12">

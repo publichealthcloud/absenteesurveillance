@@ -326,7 +326,9 @@ public partial class process_absentee_upload : System.Web.UI.Page
                     }
 
                     // match the current school and get the school and district_id
-                    var curr_school = qOrg_School.GetSchoolBySelector(school_name);
+                    // first make sure no apostrophes
+                    string name_check = school_name.Replace("'", "");
+                    var curr_school = qOrg_School.GetSchoolBySelector(name_check);
 
                     if (curr_school.SchoolID > 0)
                     {

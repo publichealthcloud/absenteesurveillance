@@ -202,7 +202,7 @@
                             <strong>DOB<%=required_indicator %></strong>
                             </td>
                             <td class="Normal">
-                            <telerik:RadDatePicker ID="rdtDOB" MinDate="1/1/1900" MaxDate="1/1/2020" runat="server"></telerik:RadDatePicker>
+                            <telerik:RadDatePicker ID="rdtDOB" MinDate="1/1/1900" MaxDate="1/1/2025" runat="server"></telerik:RadDatePicker>
                            </td>
                         </tr>
                          <tr>

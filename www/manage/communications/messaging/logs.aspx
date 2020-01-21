@@ -67,10 +67,10 @@
                         <FilterTemplate>
                             From
                             <telerik:RadDatePicker ID="FromDatePicker" runat="server" Width="85px" ClientEvents-OnDateSelected="FromDateSelected"
-                                MinDate='<%# minDate %>' MaxDate="1/1/2020" DbSelectedDate='<%# startDate %>' />
+                                MinDate='<%# minDate %>' MaxDate="1/1/2025" DbSelectedDate='<%# startDate %>' />
                             to
                             <telerik:RadDatePicker ID="ToDatePicker" runat="server" Width="85px" ClientEvents-OnDateSelected="ToDateSelected"
-                                MinDate='<%# minDate %>' MaxDate="1/1/2020" DbSelectedDate='<%# endDate %>' />
+                                MinDate='<%# minDate %>' MaxDate="1/1/2025" DbSelectedDate='<%# endDate %>' />
                             <telerik:RadScriptBlock ID="RadScriptBlock1" runat="server">
 
                                 <script type="text/javascript">
